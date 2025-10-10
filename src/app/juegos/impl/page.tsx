@@ -197,37 +197,92 @@ const JuegosPage = () => {
 
   {/* Categorías debajo del letrero */}
 <div style={{ display: 'flex', justifyContent: 'center', gap: 5, marginTop: 20 }}>
-  {/* Categoría 1: Mundo Abierto */}
+  {/* Categoría 1 */}
   <div style={{ textAlign: 'center' }}>
     <Link href="https://www.vidaextra.com/listas/mejores-videojuegos-mundo-abierto">
-      <Image src="/imgs/cat1.webp" alt="Mundo Abierto" width={480} height={180} style={{ objectFit: 'contain', cursor: 'pointer' }} />
-      <p style={{ marginTop: 10, fontWeight: 'bold' }}>Mundo Abierto</p>
+      <Image
+        src="/imgs/cat1.webp"
+        alt="Mundo Abierto"
+        width={480}
+        height={180}
+        style={{ objectFit: 'contain', cursor: 'pointer', transition: 'transform 0.3s' }}
+        onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05)')}
+        onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+      />
+      <Image
+        src="/imgs/letcat1.png"
+        alt="Letrero Mundo Abierto"
+        width={480}
+        height={60}
+        style={{ objectFit: 'contain', marginTop: 5 }}
+      />
     </Link>
   </div>
 
-  {/* Categoría 2: Sonic */}
+{/* Categoría 2 */}
   <div style={{ textAlign: 'center' }}>
     <Link href="https://www.3djuegos.com/universo/0f1f0f0/20/sonic">
-      <Image src="/imgs/cat2.jpg" alt="Sonic" width={580} height={180} style={{ objectFit: 'contain', cursor: 'pointer' }} />
-      <p style={{ marginTop: 10, fontWeight: 'bold' }}>Sonic</p>
+      <Image
+        src="/imgs/cat2.jpg"
+        alt="Mundo Sonic"
+        width={580}
+        height={180}
+        style={{ objectFit: 'contain', cursor: 'pointer', transition: 'transform 0.3s' }}
+        onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05)')}
+        onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+      />
+      <Image
+        src="/imgs/letcat2.png"
+        alt="Letrero Mundo Sonic"
+        width={150}
+        height={100}
+        style={{ objectFit: 'contain', marginTop: 5 }}
+      />
     </Link>
   </div>
-
-  {/* Categoría 3: Peleas */}
+  {/* Categoría 3 */}
   <div style={{ textAlign: 'center' }}>
     <Link href="https://bajarjuegospcgratis.com/tag/juegos-de-pelea">
-      <Image src="/imgs/cat3.webp" alt="Peleas" width={480} height={180} style={{ objectFit: 'contain', cursor: 'pointer' }} />
-      <p style={{ marginTop: 10, fontWeight: 'bold' }}>Peleas</p>
+      <Image
+        src="/imgs/cat3.webp"
+        alt="Mundo Peleas"
+        width={480}
+        height={180}
+        style={{ objectFit: 'contain', cursor: 'pointer', transition: 'transform 0.3s' }}
+        onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05)')}
+        onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+      />
+      <Image
+        src="/imgs/letcat3.png"
+        alt="Letrero Mundo Peleas"
+        width={150}
+        height={100}
+        style={{ objectFit: 'contain', marginTop: 5 }}
+      />
+    </Link>
+  </div>
+  {/* Categoría 4 */}
+  <div style={{ textAlign: 'center' }}>
+    <Link href="https://www.vidaextra.com/listas/mejores-videojuegos-mundo-abierto">
+      <Image
+        src="/imgs/cat4.jpg"
+        alt="Mundo Abierto"
+        width={480}
+        height={180}
+        style={{ objectFit: 'contain', cursor: 'pointer', transition: 'transform 0.3s' }}
+        onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05)')}
+        onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+      />
+      <Image
+        src="/imgs/letcat4.png"
+        alt="Letrero Mundo Abierto"
+        width={480}
+        height={60}
+        style={{ objectFit: 'contain', marginTop: 5 }}
+      />
     </Link>
   </div>
 
-  {/* Categoría 4: Próximamente */}
-  <div style={{ textAlign: 'center' }}>
-    <Link href="/categorias/proximamente">
-      <Image src="/imgs/cat4.jpg" alt="Próximamente" width={480} height={180} style={{ objectFit: 'contain', cursor: 'pointer' }} />
-      <p style={{ marginTop: 10, fontWeight: 'bold' }}>Próximamente</p>
-    </Link>
-  </div>
 </div>
 
 
