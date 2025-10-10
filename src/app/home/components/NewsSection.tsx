@@ -2,7 +2,7 @@
 import React from "react";
 import NewsCard from "./NewsCard";
 
-interface NewsItem {
+export interface NewsItem {
   id: number;
   title: string;
   imageUrl: string;
@@ -10,7 +10,10 @@ interface NewsItem {
   summary: string;
   link: string;
 }
-
+interface NewsSectionProps {
+  newsData: NewsItem[];
+}
+/*
 const newsData: NewsItem[] = [
   {
     id: 1,
@@ -29,8 +32,9 @@ const newsData: NewsItem[] = [
     link: "https://www.nintendo.com/es-es/Noticias/2025/Octubre/Proximos-juegos-Octubre-de-2025-2927819.html",
   },
 ];
+*/
 
-export default function NewsSection() {
+export default function NewsSection({newsData}: NewsSectionProps) {
   return (
     <section className="my-10 px-5">
       <h2 className="text-2xl font-bold mb-5 text-white">Noticias y Próximos Estrenos</h2>

@@ -1,31 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import HardwareCarousel from "./components/CarrusellHome";
-import NewsSection from "./components/NewsSection";
+import NewsSection,{NewsItem} from "./components/NewsSection";
 import JuegosFranquicias from "./components/JuegosFranquicias";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";  
 
-const games = [
-  { id: 1, name: "Ghost of Tsushima", img: "/home/GHOST.png", offer: "-33%" },
-  { id: 2, name: "XBOX", img: "/home/xbox-logo.jpg" },
-  { id: 3, name: "Little Nightmares III", img: "/home/little.jpg" },
-  { id: 4, name: "Battlefield 6", img: "/home/battlefield6.jpg" },
-  { id: 5, name: "Playstation", img: "/home/playstation-logo.jpeg" },
-];
+interface HomeProps{
+  games: any[];
+  news: NewsItem[];
 
-const news = [
-  {
-    id: 1,
-    title: "Noticia 1",
-    img: "/news/news1.jpg",
-    date: "10 Oct",
-    summary: "Resumen...",
-  },
-];
-
-const communities = [{ id: 1, name: "Comunidad A", members: 120 }];
-
-export default function Home() {
+}
+export default function Home({games, news}:HomeProps) {
   return (
     <div className="font-sans">
       {/* Hero */}
@@ -56,7 +41,55 @@ export default function Home() {
       </div>
 
       {/* Noticias + Próximos Estrenos */}
-      <NewsSection />
+      <NewsSection newsData={news}/>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const gamesRaw = await prisma.juegos.findMany({
+    select: {
+      id_jue: true,
+      nom_jue: true,
+      img_jue: true,
+      pre_ofe_jue: true,
+      porc_desc_jue: true,
+    },
+  });
+
+  const newsRaw = await prisma.noticias.findMany({
+    select: {
+      id_not: true,
+      tit_not: true,
+      img_not: true,
+      fec_not: true,
+      res_not: true,
+      url_not: true,
+    },
+    orderBy: { fec_not: "desc" },
+    take: 5,
+  });
+
+  const games = gamesRaw.map((g) => ({
+    id: g.id_jue,
+    name: g.nom_jue,
+    img: g.img_jue || "/default-game.png",
+    offer: g.porc_desc_jue ? `-${g.porc_desc_jue}%` : null,
+  }));
+
+  const news = newsRaw.map((n) => ({
+    id: n.id_not,
+    title: n.tit_not,
+    imageUrl: n.img_not || "/default-news.png",
+    date: n.fec_not.toLocaleDateString("es-ES", { day: "2-digit", month: "short", year: "numeric" }),
+    summary: n.res_not || "",
+    link: n.url_not || "#",
+  }));
+
+  return {
+    props: {
+      games,
+      news,
+    },
+  };
 }
