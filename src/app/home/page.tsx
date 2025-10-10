@@ -3,7 +3,7 @@ import Link from "next/link";
 import HardwareCarousel from "./components/CarrusellHome";
 import NewsSection from "./components/NewsSection";
 import JuegosFranquicias from "./components/JuegosFranquicias";
-import { prisma } from "./src/lib/prisma";
+import { prisma } from "@/lib/prisma";
 
 const games = [
   { id: 1, name: "Ghost of Tsushima", img: "/home/GHOST.png", offer: "-33%" },
