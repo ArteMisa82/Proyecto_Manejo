@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-//import HardwareCarousel from "./components/CarrusellHome";
+import HardwareCarousel from "./components/CarrusellHome";
 //import NewsSection from "./components/NewsSection"; 
 //import JuegosFranquicias from "./components/JuegosFranquicias";
 
@@ -40,6 +40,12 @@ export default function Home() {
         </Link>
        
       </div>
+
+      <div className="font-sans">
+      {/* Carrusel Hardware */}
+      <HardwareCarousel />
+      </div>
+
     </div>
    
   );
