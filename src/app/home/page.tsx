@@ -2,14 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import HardwareCarousel from "./components/CarrusellHome";
 //import NewsSection from "./components/NewsSection"; 
-//import JuegosFranquicias from "./components/JuegosFranquicias";
+import JuegosFranquicias from "./components/JuegosFranquicias";
 
 const games = [
   { id: 1, name: "Ghost of Tsushima", img: "/home/GHOST.png", offer: "-33%" },
   { id: 2, name: "XBOX", img: "/home/xbox-logo.jpg" },
   { id: 3, name: "Little Nightmares III", img: "/home/little.jpg" },
   { id: 4, name: "Battlefield 6", img: "/home/battlefield6.jpg" },
-  { id: 5, name: "Playstation", img: "/home/playstation-logo.jpj", offer: "OFERTA" },
+  { id: 5, name: "Playstation", img: "/home/playstation-logo.jpeg" },
 ];
 
 const news = [
@@ -40,6 +40,9 @@ export default function Home() {
         </Link>
        
       </div>
+
+      {/* Juegos + Franquicias */}
+      <JuegosFranquicias games={games} />
 
       <div className="font-sans">
       {/* Carrusel Hardware */}
