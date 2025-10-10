@@ -1,215 +1,66 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
 
-body {
-    background: #000;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.6;
-}
+/* Page wrapper */
+.pagina-juegos{min-height:100vh;display:flex;flex-direction:column}
+.contenedor{max-width:1200px;margin:0 auto;padding:0 1rem;width:100%}
 
-.contenedor {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem; /* Padding a los lados para móviles */
-}
+/* Header */
+.header-juegos{padding:1rem 0;border-bottom:2px solid #0c4cff}
+.contenedor-header{max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.titulo-principal{font-size:1.9rem;font-weight:800}
+.navegacion{display:flex;gap:.8rem}
+.nav-link{color:#cfcfcf;text-decoration:none;padding:.4rem .8rem;border-radius:6px}
+.nav-link.activo{background:rgba(12,76,255,.12);color:#fff}
 
-.header-juegos {
-    padding: 1rem 0;
-    border-bottom: 2px solid #0c4cff;
-}
+/* Sección ofertas */
+.ofertas-carrusel{padding:2rem 0}
+.cabecera-ofertas{max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;gap:1rem;justify-content:flex-start}
+.cabecera-ofertas h2{font-size:1.8rem;margin:0}
+.titulo-destacado{background:linear-gradient(90deg,#0c4cff,#1e90ff);color:#fff;padding:.45rem .9rem;border-radius:8px;font-weight:700}
 
-.titulo-principal {
-    font-size: 2rem;
-    font-weight: 700;
-}
+/* Carrusel - centrado y contenido organizado */
+.contenedor-carrusel{display:flex;align-items:center;justify-content:center;gap:1rem}
+.boton-navegacion{flex:0 0 56px;height:56px;border-radius:50%;background:rgba(255,255,255,.04);color:#fff;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.carrusel{flex:1;max-width:980px;background:linear-gradient(#000,#0a0a0a);padding:1.5rem;border-radius:14px;display:flex;align-items:center}
+.lista-juegos{display:flex;align-items:center;justify-content:center;width:100%}
+.tarjeta-juego{width:100%;max-width:760px;display:flex;justify-content:center;position:relative}
 
-.titulo-destacado {
-    background: linear-gradient(90deg, #0c4cff, #1e90ff);
-    color: #fff;
-    padding: .6rem 1rem;
-    border-radius: 8px;
-    font-weight: 700;
-    display: inline-block; 
-}
+/* Contenido interno de la tarjeta: imagen + info */
+.contenido-juego{display:flex;gap:1.2rem;align-items:flex-start;width:100%}
+.imagen-juego{flex:0 0 48%;min-width:240px;height:260px;border-radius:12px;background:linear-gradient(90deg,#0c4cff,#1e90ff);display:flex;align-items:center;justify-content:center;color:#fff;position:relative}
+.info-juego{flex:1}
 
-.ofertas-carrusel {
-    padding: 2rem 0;
-}
+.etiqueta-oferta,.badge-destacado{position:absolute;top:12px;padding:6px 10px;border-radius:14px;color:#fff;background:linear-gradient(90deg,#0c4cff,#1e90ff);font-weight:700;z-index:10}
+.etiqueta-oferta{right:12px}.badge-destacado{left:12px}
 
-.carrusel {
-    background: linear-gradient(#000, #0a0a0a);
-    padding: 1.5rem;
-    border-radius: 16px;
-    overflow: hidden; /* Importante para el carrusel */
-}
+.titulo-juego{font-size:1.6rem;margin:0 0 .6rem}
+.descripcion-juego{color:#cfe6ff;margin-bottom:1rem}
+.precios{display:flex;gap:1rem;align-items:center;margin-bottom:1rem}
+.precio-original{color:#9a9a9a;text-decoration:line-through}
+.precio-oferta{color:#1e90ff;font-weight:800;font-size:1.4rem}
+.acciones{display:flex;gap:.8rem;flex-wrap:wrap}
+.boton-comprar{background:linear-gradient(90deg,#0c4cff,#1e90ff);color:#fff;padding:.7rem 1rem;border-radius:8px;border:0;cursor:pointer}
+.boton-info{background:transparent;color:#0c4cff;border:2px solid #0c4cff;padding:.55rem .85rem;border-radius:8px}
 
-.lista-juegos {
-    display: flex;
-    gap: 1rem;
-    transition: transform .5s ease;
-}
+.indicadores{display:flex;gap:.6rem;justify-content:center;margin:1rem 0}
+.indicador{width:12px;height:12px;border-radius:50%;background:#111;cursor:pointer}
+.indicador.activo{background:linear-gradient(90deg,#0c4cff,#1e90ff);box-shadow:0 0 8px rgba(12,76,255,.22)}
+.contador-juegos{text-align:center;color:#cfe6ff;margin-top:.5rem}
 
-.tarjeta-juego {
-    flex: 0 0 100%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 420px; /* Altura mínima para mantener consistencia */
-    position: relative; 
-}
+/* Todos los juegos */
+.todos-juegos{padding:2rem 0}
+.cabecera-todos{max-width:1200px;margin:0 auto;padding:0 1rem;margin-bottom:1rem}
+.grid-juegos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.card-juego{background:linear-gradient(#000,#0a0a0a);padding:1rem;border-radius:10px;position:relative;cursor:pointer}
+.card-imagen{height:120px;border-radius:8px;background:linear-gradient(90deg,#0c4cff,#1e90ff);display:flex;align-items:center;justify-content:center;color:#fff}
+.card-oferta{position:absolute;top:10px;right:10px;background:#0c4cff;color:#fff;padding:4px 8px;border-radius:12px;font-weight:700}
 
-.imagen-juego {
-    height: 260px;
-    border-radius: 12px;
-    background: linear-gradient(90deg, #0c4cff, #1e90ff);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-weight: 700;
-}
+/* Footer */
+.footer-juegos{padding:2rem 0;border-top:1px solid #111;margin-top:auto}
+.contenedor-footer{max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
 
-.etiqueta-oferta,
-.badge-destacado {
-    position: absolute;
-    top: 16px;
-    padding: 6px 12px;
-    border-radius: 18px;
-    color: #fff;
-    background: linear-gradient(90deg, #0c4cff, #1e90ff);
-    font-weight: 700;
-    z-index: 10; 
-}
-
-.etiqueta-oferta {
-    right: 16px;
-}
-
-.badge-destacado {
-    left: 16px;
-}
-
-.titulo-juego {
-    font-size: 1.6rem;
-    margin-bottom: .6rem;
-}
-
-.descripcion-juego {
-    color: #cfe6ff;
-    margin-bottom: 1rem;
-}
-
-.precio-oferta {
-    color: #1e90ff;
-    font-weight: 800;
-    font-size: 1.6rem;
-}
-
-.boton-comprar {
-    background: linear-gradient(90deg, #0c4cff, #1e90ff);
-    color: #fff;
-    padding: .9rem 1.2rem;
-    border-radius: 8px;
-    border: 0;
-    cursor: pointer;
-    text-decoration: none; /* Buena práctica si es un <a> */
-    display: inline-block;
-}
-
-.boton-info {
-    background: transparent;
-    color: #0c4cff;
-    border: 2px solid #0c4cff;
-    padding: .7rem 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    text-decoration: none; /* Buena práctica si es un <a> */
-    display: inline-block;
-}
-
-.indicadores {
-    display: flex;
-    gap: .6rem;
-    justify-content: center;
-    margin: 1.2rem 0;
-}
-
-.indicador {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #111;
-    cursor: pointer;
-    transition: background .3s; 
-}
-
-.indicador.activo {
-    background: linear-gradient(90deg, #0c4cff, #1e90ff);
-    box-shadow: 0 0 8px rgba(12, 76, 255, .22);
-}
-
-.grid-juegos {
-    /* Mejorado para mejor adaptabilidad */
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.card-juego {
-    background: linear-gradient(#000, #0a0a0a);
-    padding: 1rem;
-    border-radius: 10px;
-    position: relative; /* Necesario para posicionar .card-oferta */
-}
-
-.card-oferta {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: #0c4cff;
-    color: #fff;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-weight: 700;
-}
-
-.footer-juegos {
-    padding: 2rem 0;
-    border-top: 1px solid #111;
-    margin-top: 2rem;
-    text-align: center; 
-}
-
-
-@media (max-width: 768px) {
-    .titulo-principal {
-        font-size: 1.6rem;
-    }
-
-    .imagen-juego {
-        height: 180px;
-    }
-
-    .tarjeta-juego {
-        min-height: 360px;
-    }
-}
-
-@media (max-width: 480px) {
-    .contenedor {
-        padding: 0 .8rem;
-    }
-
-    .grid-juegos {
-        grid-template-columns: 1fr;
-    } 
-
-    .titulo-destacado {
-        font-size: .95rem;
-    }
-}
+/* Responsive adjustments */
+@media(max-width:900px){.contenido-juego{flex-direction:column}.imagen-juego{width:100%;height:180px}.tarjeta-juego{max-width:520px}}
+@media(max-width:480px){.titulo-principal{font-size:1.2rem}.contenedor{padding:0 .8rem}.grid-juegos{grid-template-columns:1fr}.acciones{width:100%;justify-content:space-between}}
