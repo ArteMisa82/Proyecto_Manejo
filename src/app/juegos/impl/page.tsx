@@ -236,31 +236,31 @@ const JuegosPage = () => {
         alt="Letrero Mundo Sonic"
         width={150}
         height={100}
-        style={{ objectFit: 'contain', marginTop: 5 }}
+        style={{ objectFit: 'contain', display: 'block', margin: '5px auto 0 auto' }}
       />
     </Link>
   </div>
   {/* Categoría 3 */}
-  <div style={{ textAlign: 'center' }}>
-    <Link href="https://bajarjuegospcgratis.com/tag/juegos-de-pelea">
-      <Image
-        src="/imgs/cat3.webp"
-        alt="Mundo Peleas"
-        width={480}
-        height={180}
-        style={{ objectFit: 'contain', cursor: 'pointer', transition: 'transform 0.3s' }}
-        onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05)')}
-        onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
-      />
-      <Image
-        src="/imgs/letcat3.png"
-        alt="Letrero Mundo Peleas"
-        width={150}
-        height={100}
-        style={{ objectFit: 'contain', marginTop: 5 }}
-      />
-    </Link>
-  </div>
+<div style={{ textAlign: 'center' }}>
+  <Link href="https://bajarjuegospcgratis.com/tag/juegos-de-pelea">
+    <Image
+      src="/imgs/cat3.webp"
+      alt="Mundo Peleas"
+      width={480}
+      height={180}
+      style={{ objectFit: 'contain', cursor: 'pointer', transition: 'transform 0.3s' }}
+      onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05)')}
+      onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+    />
+    <Image
+      src="/imgs/letcat3.png"
+      alt="Letrero Mundo Peleas"
+      width={150}
+      height={100}
+      style={{ objectFit: 'contain', display: 'block', margin: '5px auto 0 auto' }}
+    />
+  </Link>
+</div>
   {/* Categoría 4 */}
   <div style={{ textAlign: 'center' }}>
     <Link href="https://www.vidaextra.com/listas/mejores-videojuegos-mundo-abierto">
