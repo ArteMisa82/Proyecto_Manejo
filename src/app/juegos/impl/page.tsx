@@ -1,5 +1,5 @@
 'use client';
-
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import '../../../styles/juegos.css';
@@ -190,11 +190,50 @@ const JuegosPage = () => {
   <Image
     src="/imgs/letrero.png"
     alt="Letrero"
-    width={650}
-    height={500}
+    width={500}
+    height={200}
     style={{ display: 'block', margin: '0 auto', objectFit: 'contain' }}
   />
+
+  {/* Categorías debajo del letrero */}
+<div style={{ display: 'flex', justifyContent: 'center', gap: 5, marginTop: 20 }}>
+  {/* Categoría 1: Mundo Abierto */}
+  <div style={{ textAlign: 'center' }}>
+    <Link href="https://www.vidaextra.com/listas/mejores-videojuegos-mundo-abierto">
+      <Image src="/imgs/cat1.webp" alt="Mundo Abierto" width={480} height={180} style={{ objectFit: 'contain', cursor: 'pointer' }} />
+      <p style={{ marginTop: 10, fontWeight: 'bold' }}>Mundo Abierto</p>
+    </Link>
+  </div>
+
+  {/* Categoría 2: Sonic */}
+  <div style={{ textAlign: 'center' }}>
+    <Link href="https://www.3djuegos.com/universo/0f1f0f0/20/sonic">
+      <Image src="/imgs/cat2.jpg" alt="Sonic" width={580} height={180} style={{ objectFit: 'contain', cursor: 'pointer' }} />
+      <p style={{ marginTop: 10, fontWeight: 'bold' }}>Sonic</p>
+    </Link>
+  </div>
+
+  {/* Categoría 3: Peleas */}
+  <div style={{ textAlign: 'center' }}>
+    <Link href="https://bajarjuegospcgratis.com/tag/juegos-de-pelea">
+      <Image src="/imgs/cat3.webp" alt="Peleas" width={480} height={180} style={{ objectFit: 'contain', cursor: 'pointer' }} />
+      <p style={{ marginTop: 10, fontWeight: 'bold' }}>Peleas</p>
+    </Link>
+  </div>
+
+  {/* Categoría 4: Próximamente */}
+  <div style={{ textAlign: 'center' }}>
+    <Link href="/categorias/proximamente">
+      <Image src="/imgs/cat4.jpg" alt="Próximamente" width={480} height={180} style={{ objectFit: 'contain', cursor: 'pointer' }} />
+      <p style={{ marginTop: 10, fontWeight: 'bold' }}>Próximamente</p>
+    </Link>
+  </div>
 </div>
+
+
+</div>
+
+
 
       </section>
 
