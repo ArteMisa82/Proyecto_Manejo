@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import HardwareCarousel from "./components/CarrusellHome";
-//import NewsSection from "./components/NewsSection"; 
+import NewsSection from "./components/NewsSection"; 
 import JuegosFranquicias from "./components/JuegosFranquicias";
 
 const games = [
@@ -48,6 +48,11 @@ export default function Home() {
       {/* Carrusel Hardware */}
       <HardwareCarousel />
       </div>
+
+       {/* Noticias + Próximos Estrenos */}
+      <NewsSection/>
+
+
 
     </div>
    
