@@ -1,6 +1,8 @@
+ 
  'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import '../../styles/juegos.css';
 
 interface Juego {
@@ -18,53 +20,53 @@ const JuegosPage = () => {
   const [juegos] = useState<Juego[]>([
     {
       id: 1,
-      titulo: "Football Manager 26",
-      precioOriginal: 59.99,
-      precioOferta: 29.99,
+      titulo: "God of War: Ragnarok",
+      precioOriginal: 69.99,
+      precioOferta: 39.99,
       descuento: 50,
-      imagen: "/images/football-manager.jpg",
+      imagen: "/imgs/gow.png",
       destacado: true,
-      descripcion: "El simulador de gestión futbolística más completo"
+      descripcion: "Únete a Kratos y Atreus para explorar los míticos nueve reinos en búsqueda de respuestas y aliados en God of War Ragnarok."
     },
     {
       id: 2,
       titulo: "Sonic Frontiers",
-      precioOriginal: 49.99,
-      precioOferta: 24.99,
+      precioOriginal: 59.99,
+      precioOferta: 34.99,
       descuento: 50,
-      imagen: "/images/sonic.jpg",
+      imagen: "/imgs/frontiers.jpg",
       destacado: false,
-      descripcion: "Nueva aventura de alta velocidad"
+      descripcion: "Conviértete en Sonic y viaja para desvelar los misterios de una antigua civilización amenazada por hordas de robots."
     },
     {
       id: 3,
-      titulo: "Fitness Trainer Pro",
-      precioOriginal: 39.99,
-      precioOferta: 19.99,
-      descuento: 50,
-      imagen: "/images/trainer.jpg",
+      titulo: "The Legend of Zelda:Tears of The Kingdom",
+      precioOriginal: 79.99,
+      precioOferta: 49.99,
+      descuento: 40,
+      imagen: "/imgs/totk.jpg",
       destacado: false,
-      descripcion: "Tu entrenador personal en casa"
+      descripcion: "En la secuela de The Legend of Zelda: Breath of the Wild, seguirás tu propio camino a lo largo y ancho de las inmensas tierras de Hyrule y las extrañas islas que flotan en las alturas. ¿Lograrás dominar el poder que te ofrecen las nuevas habilidades de Link para luchar contra las fuerzas malignas que ponen en peligro el reino?"
     },
     {
       id: 4,
-      titulo: "Ultimate Competition",
-      precioOriginal: 44.99,
-      precioOferta: 22.49,
-      descuento: 50,
-      imagen: "/images/competir.jpg",
+      titulo: "Hollow Knight: Silksong",
+      precioOriginal: 6.99,
+      precioOferta: 3.99,
+      descuento: 40,
+      imagen: "/imgs/hollow.png",
       destacado: false,
-      descripcion: "Compite en torneos globales"
+      descripcion: "Hollow Knight es un extraordinario juego de acción y plataformas en 2D que llega pisando fuerte al prolífico género de los metroidvania."
     },
     {
       id: 5,
-      titulo: "Game Package XL",
-      precioOriginal: 69.99,
-      precioOferta: 34.99,
-      descuento: 50,
-      imagen: "/images/package.jpg",
+      titulo: "Sonic Unleashed:PC Port",
+      precioOriginal: 29.99,
+      precioOferta: 0,
+      descuento: 100,
+      imagen: "/imgs/unleashed.jpg",
       destacado: false,
-      descripcion: "Colección completa de juegos"
+      descripcion: "SONIC UNLEASHED LLEGO A PC !! No de forma oficial pero ya como una aplicación normal para PC. Olvídate de la horrible y tediosa configuración del emulador Xenia y prepárate para jugar Unleashed de la mejor forma en PC."
     }
   ]);
 
@@ -157,7 +159,13 @@ const JuegosPage = () => {
               <div className={`tarjeta-juego ${juegoActual.destacado ? 'destacado' : ''}`}>
                 <div className="contenido-juego">
                   <div className="imagen-juego">
-                    <div className="nombre-juego-imagen">{juegoActual.titulo}</div>
+                    <Image
+                      src={juegoActual.imagen}
+                      alt={juegoActual.titulo}
+                      width={740}
+                      height={360}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 12 }}
+                    />
                     <div className="etiqueta-oferta">-{juegoActual.descuento}%</div>
                     {juegoActual.destacado && (
                       <div className="badge-destacado">🔥 DESTACADO</div>
@@ -178,12 +186,11 @@ const JuegosPage = () => {
                     
                     <div className="acciones">
                       <button className="boton-comprar">
-                        <span className="icono-carrito">🛒</span>
-                        COMPRAR AHORA
+                        YA DISPONIBLE
                       </button>
                       <button className="boton-info">
                         <span className="icono-info">ℹ️</span>
-                        MÁS INFORMACIÓN
+                        LO MÁS VENDIDO
                       </button>
                     </div>
 
@@ -221,35 +228,7 @@ const JuegosPage = () => {
         </div>
       </section>
 
-      {/* Sección de Todos los Juegos */}
-      <section className="todos-juegos">
-        <div className="cabecera-todos">
-          <h3>Todos los Juegos en Oferta</h3>
-          <p>No te pierdas estas increíbles ofertas</p>
-        </div>
-
-        <div className="grid-juegos">
-          {juegos.map((juego, index) => (
-            <div 
-              key={juego.id} 
-              className={`card-juego ${juego.destacado ? 'card-destacado' : ''} ${index === indiceActual ? 'activo' : ''}`}
-              onClick={() => irAlJuego(index)}
-            >
-              <div className="card-imagen">
-                <div className="card-nombre">{juego.titulo}</div>
-                <div className="card-oferta">-{juego.descuento}%</div>
-              </div>
-              <div className="card-info">
-                <h4>{juego.titulo}</h4>
-                <div className="card-precios">
-                  <span className="card-precio-original">${juego.precioOriginal.toFixed(2)}</span>
-                  <span className="card-precio-oferta">${juego.precioOferta.toFixed(2)}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+     
 
       {/* Footer */}
       <footer className="footer-juegos">
