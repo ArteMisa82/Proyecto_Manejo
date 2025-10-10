@@ -9,7 +9,7 @@ export default function HardwarePage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* NAV LOCAL (opcional) */}
+      {/* NAV LOCAL */}
       <header className="sticky top-0 z-30 w-full bg-[#0b0f19]/70 backdrop-blur border-b border-white/10">
         <div className="mx-auto max-w-7xl px-4 h-14 flex items-center justify-between">
           <h1 className="text-sm tracking-wide uppercase text-white/80">Hardware</h1>
@@ -17,34 +17,36 @@ export default function HardwarePage() {
             onClick={() => setOpen(true)}
             className="inline-flex items-center gap-2 rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10"
           >
-            <span className="i">☰</span> Opciones
+            <span>☰</span> Opciones
           </button>
         </div>
       </header>
 
-      {/* HERO / BANNER */}
-      <section className="relative">
-        <div className="relative h-[60vh] w-full">
-          {/* Pon tu imagen en /public/hardware/hero.jpg */}
+      {/* HERO */}
+      <section className="relative w-full overflow-hidden">
+        <div className="relative w-full">
           <Image
-            src="/hardware/hero.jpg"
+            src="/hero.jpg"
             alt="Banner hardware"
-            fill
+            width={1920}
+            height={1080}
             priority
-            className="object-cover opacity-60"
+            className="w-full h-[80vh] md:h-[90vh] object-cover object-center"
           />
+          <div className="absolute inset-0 bg-black/35 md:bg-black/30" />
         </div>
+
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center px-6">
-            <h2 className="text-3xl sm:text-5xl font-extrabold drop-shadow">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold">
               Explora los equipos más recientes
             </h2>
-            <p className="mt-3 text-white/70">
+            <p className="mt-3 text-white/80">
               Consolas, accesorios y comparativas en un solo lugar.
             </p>
             <a
               href="#recientes"
-              className="mt-6 inline-flex items-center rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium hover:bg-blue-500"
+              className="mt-6 inline-flex items-center rounded-md bg-blue-600 hover:bg-blue-500 px-5 py-2.5 text-sm font-medium"
             >
               Ver destacados
             </a>
@@ -52,20 +54,13 @@ export default function HardwarePage() {
         </div>
       </section>
 
-      {/* DRAWER / OFFCANVAS */}
+      {/* DRAWER */}
       {open && (
         <div className="fixed inset-0 z-40">
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-black/60"
-            onClick={() => setOpen(false)}
-          />
-          {/* Panel */}
+          <div className="absolute inset-0 bg-black/60" onClick={() => setOpen(false)} />
           <aside className="absolute right-0 top-0 h-full w-full max-w-sm bg-[#0f1424] shadow-xl border-l border-white/10">
             <div className="flex items-center justify-between px-4 h-14 border-b border-white/10">
-              <h3 className="text-sm tracking-wide uppercase text-white/80">
-                Hardware – Navegación
-              </h3>
+              <h3 className="text-sm tracking-wide uppercase text-white/80">Hardware – Navegación</h3>
               <button
                 onClick={() => setOpen(false)}
                 className="rounded-md border border-white/15 px-2 py-1 text-sm hover:bg-white/10"
@@ -103,7 +98,7 @@ export default function HardwarePage() {
         </div>
       )}
 
-      {/* EQUIPOS RECIENTES (carrusel horizontal sin libs) */}
+      {/* EQUIPOS RECIENTES */}
       <section id="recientes" className="mx-auto max-w-7xl px-4 py-10">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold">Equipos recientes</h3>
@@ -114,26 +109,20 @@ export default function HardwarePage() {
           <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {/* Card 1 */}
             <article className="snap-start shrink-0 w-80 bg-[#0f0f12] rounded-xl border border-white/10 overflow-hidden">
-              <div className="relative h-48">
-                <Image
-                  src="/hardware/switch2.jpg"
-                  alt="Nintendo Switch 2"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              <Image
+                src="/switch2.jpg"
+                alt="Nintendo Switch 2"
+                width={1280}
+                height={720}
+                className="w-full h-48 object-cover"
+              />
               <div className="p-4">
                 <span className="inline-block text-[10px] uppercase tracking-wide text-black bg-red-400/90 px-2 py-0.5 rounded">
                   Nuevo
                 </span>
                 <h4 className="mt-2 font-semibold">Nintendo Switch 2</h4>
-                <p className="text-sm text-white/60">
-                  120Hz, mejor autonomía y rendimiento superior.
-                </p>
-                <Link
-                  href="/hardware/switch2"
-                  className="mt-3 inline-flex items-center rounded-md bg-blue-600 px-3 py-1.5 text-sm hover:bg-blue-500"
-                >
+                <p className="text-sm text-white/60">120Hz, mejor autonomía y rendimiento superior.</p>
+                <Link href="/hardware/switch2" className="mt-3 inline-flex items-center rounded-md bg-blue-600 px-3 py-1.5 text-sm hover:bg-blue-500">
                   Ver detalles
                 </Link>
               </div>
@@ -141,26 +130,20 @@ export default function HardwarePage() {
 
             {/* Card 2 */}
             <article className="snap-start shrink-0 w-80 bg-[#0f0f12] rounded-xl border border-white/10 overflow-hidden">
-              <div className="relative h-48">
-                <Image
-                  src="/hardware/switch_oled.jpg"
-                  alt="Nintendo Switch OLED"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              <Image
+                src="/switch_oled.jpg"
+                alt="Nintendo Switch OLED"
+                width={1280}
+                height={720}
+                className="w-full h-48 object-cover"
+              />
               <div className="p-4">
                 <span className="inline-block text-[10px] uppercase tracking-wide text-black bg-cyan-300/90 px-2 py-0.5 rounded">
                   Destacado
                 </span>
                 <h4 className="mt-2 font-semibold">Nintendo Switch OLED</h4>
-                <p className="text-sm text-white/60">
-                  Pantalla OLED de 7” y audio mejorado.
-                </p>
-                <Link
-                  href="/hardware/switch-oled"
-                  className="mt-3 inline-flex items-center rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10"
-                >
+                <p className="text-sm text-white/60">Pantalla OLED de 7” y audio mejorado.</p>
+                <Link href="/hardware/switch-oled" className="mt-3 inline-flex items-center rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">
                   Ver detalles
                 </Link>
               </div>
@@ -168,43 +151,37 @@ export default function HardwarePage() {
 
             {/* Card 3 */}
             <article className="snap-start shrink-0 w-80 bg-[#0f0f12] rounded-xl border border-white/10 overflow-hidden">
-              <div className="relative h-48">
-                <Image
-                  src="/hardware/3ds.jpg"
-                  alt="Nintendo 3DS"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              <Image
+                src="/3ds.jpg"
+                alt="Nintendo 3DS"
+                width={1280}
+                height={720}
+                className="w-full h-48 object-cover"
+              />
               <div className="p-4">
                 <span className="inline-block text-[10px] uppercase tracking-wide text-black bg-zinc-300/90 px-2 py-0.5 rounded">
                   Clásico
                 </span>
                 <h4 className="mt-2 font-semibold">Nintendo 3DS</h4>
-                <p className="text-sm text-white/60">
-                  3D sin gafas y catálogo retro portátil.
-                </p>
-                <Link
-                  href="/hardware/3ds"
-                  className="mt-3 inline-flex items-center rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10"
-                >
+                <p className="text-sm text-white/60">3D sin gafas y catálogo retro portátil.</p>
+                <Link href="/hardware/3ds" className="mt-3 inline-flex items-center rounded-md border border-white/15 px-3 py-1.5 text-sm hover:bg-white/10">
                   Ver detalles
                 </Link>
               </div>
             </article>
           </div>
+
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-gradient-to-r from-black to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-black to-transparent" />
         </div>
       </section>
 
-      {/* GRID DE TARJETAS CON ESPECIFICACIONES */}
+      {/* GRID DE TARJETAS */}
       <section className="mx-auto max-w-7xl px-4 pb-12">
         <h3 className="text-lg font-semibold mb-4">Consolas y especificaciones</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* Repite este patrón con tus equipos */}
           <article className="bg-[#0f0f12] rounded-xl border border-white/10 overflow-hidden">
-            <div className="relative h-44">
-              <Image src="/hardware/switch2.jpg" alt="Switch 2" fill className="object-cover" />
-            </div>
+            <Image src="/switch2.jpg" alt="Switch 2" width={1280} height={720} className="w-full h-44 object-cover" />
             <div className="p-4">
               <h4 className="font-semibold">Nintendo Switch 2</h4>
               <ul className="mt-2 text-sm text-white/65 space-y-1">
@@ -219,9 +196,7 @@ export default function HardwarePage() {
           </article>
 
           <article className="bg-[#0f0f12] rounded-xl border border-white/10 overflow-hidden">
-            <div className="relative h-44">
-              <Image src="/hardware/switch_oled.jpg" alt="Switch OLED" fill className="object-cover" />
-            </div>
+            <Image src="/switch_oled.jpg" alt="Switch OLED" width={1280} height={720} className="w-full h-44 object-cover" />
             <div className="p-4">
               <h4 className="font-semibold">Nintendo Switch OLED</h4>
               <ul className="mt-2 text-sm text-white/65 space-y-1">
@@ -236,9 +211,7 @@ export default function HardwarePage() {
           </article>
 
           <article className="bg-[#0f0f12] rounded-xl border border-white/10 overflow-hidden">
-            <div className="relative h-44">
-              <Image src="/hardware/3ds.jpg" alt="3DS" fill className="object-cover" />
-            </div>
+            <Image src="/3ds.jpg" alt="3DS" width={1280} height={720} className="w-full h-44 object-cover" />
             <div className="p-4">
               <h4 className="font-semibold">Nintendo 3DS</h4>
               <ul className="mt-2 text-sm text-white/65 space-y-1">
