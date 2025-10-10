@@ -42,6 +42,7 @@ export default function Home() {
       </div>
 
       {/* Juegos + Franquicias */}
+      <div className="font-sans"  ></div>
       <JuegosFranquicias games={games} />
 
       <div className="font-sans">
