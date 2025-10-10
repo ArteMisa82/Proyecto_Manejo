@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import '../../styles/juegos.css';
+import '../../../styles/juegos.css';
 
 interface Juego {
   id: number;
