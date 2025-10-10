@@ -6,15 +6,14 @@ import { galleryItems, type GalleryItem } from './data/gallery';
 import '../imp/impStyles.css';
 import './galleryStyles.css';
 
-type Filter = 'Todos' | 'Consolas' | 'Accesorios' | 'Videos';
+type Filter = 'Todos' | 'Consolas' | 'Accesorios' | 'Videos' | 'Museo Digital';
 
 export default function GaleriaPage() {
   const [filter, setFilter] = useState<Filter>('Todos');
 
-  const filtered =
-    filter === 'Todos'
-      ? galleryItems
-      : galleryItems.filter((i) => i.category === filter);
+  // Oculta elementos no aprobados (si no pones approved, se muestra)
+  const base = galleryItems.filter((i) => i.approved !== false);
+  const filtered = filter === 'Todos' ? base : base.filter((i) => i.category === filter);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -36,7 +35,7 @@ export default function GaleriaPage() {
           <div className="text-center px-6">
             <h1 className="text-4xl md:text-5xl font-extrabold">Galería</h1>
             <p className="mt-3 text-white/80">
-              Fotos y videos de consolas, accesorios y comparativas.
+              Fotos y videos de consolas, accesorios, comparativas y museo digital.
             </p>
             <a href="#grid" className="btn-hardware mt-6">Ver todo</a>
           </div>
@@ -46,7 +45,7 @@ export default function GaleriaPage() {
       {/* FILTROS */}
       <section className="mx-auto max-w-7xl px-4 py-8">
         <div className="flex gap-2 flex-wrap">
-          {(['Todos', 'Consolas', 'Accesorios', 'Videos'] as Filter[]).map((f) => (
+          {(['Todos', 'Consolas', 'Accesorios', 'Videos', 'Museo Digital'] as Filter[]).map((f) => (
             <button
               key={f}
               onClick={() => setFilter(f)}
@@ -71,7 +70,7 @@ export default function GaleriaPage() {
       <section className="mx-auto max-w-7xl px-4 pb-16">
         <h3 className="text-lg font-semibold mb-4">Videos de uso de equipos</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {galleryItems
+          {base
             .filter((i) => i.type === 'video')
             .slice(0, 2)
             .map((v) => (
@@ -92,47 +91,60 @@ export default function GaleriaPage() {
 }
 
 function Card({ item }: { item: GalleryItem }) {
-  if (item.type === 'image') {
-    return (
-      <article className="card-hardware cursor-zoom-in">
-        <div className="relative h-48">
-          <Image
-            src={item.src}
-            alt={item.alt ?? item.title}
-            fill
-            className="object-cover"
-          />
-        </div>
-        <div className="card-content">
-          <h4 className="font-semibold">{item.title}</h4>
-          <p className="text-xs text-white/60 mt-1">{item.category}</p>
-        </div>
-      </article>
-    );
-  }
+  const isVideo = item.type === 'video';
+  const isFanart = item.type === 'fanart';
 
   return (
     <article className="card-hardware">
-      <div className="relative h-48">
+      <div className="relative h-48 overflow-hidden">
         <Image
-          src={item.thumb ?? '/imghardware/portada.jpg'}
-          alt={item.title}
+          src={item.thumb ?? item.src}
+          alt={item.alt ?? item.title}
           fill
           className="object-cover"
         />
-        <span className="video-badge">▶</span>
+        {/* Distintivos */}
+        {isVideo && <span className="video-badge">▶</span>}
+        {isFanart && <span className="video-badge">★</span>}
       </div>
+
       <div className="card-content">
         <h4 className="font-semibold">{item.title}</h4>
-        <p className="text-xs text-white/60 mt-1">{item.category}</p>
-        <a
-          href={item.src}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-hardware mt-3"
-        >
-          Ver video
-        </a>
+        <p className="text-xs text-white/60 mt-1">
+          {isFanart
+            ? `Museo Digital${item.author ? ` • ${item.author}` : ''}`
+            : item.category}
+        </p>
+
+        {/* Tags solo para fanart (opcional) */}
+        {isFanart && item.tags?.length ? (
+          <div className="mt-2 flex flex-wrap gap-1">
+            {item.tags.map((t) => (
+              <span key={t} className="chip">{t}</span>
+            ))}
+          </div>
+        ) : null}
+
+        {/* Acción */}
+        {isVideo ? (
+          <a
+            href={item.src}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-hardware mt-3"
+          >
+            Ver video
+          </a>
+        ) : (
+          <a
+            href={item.src}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-hardware mt-3"
+          >
+            Ver grande
+          </a>
+        )}
       </div>
     </article>
   );
