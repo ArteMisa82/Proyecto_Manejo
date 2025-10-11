@@ -94,6 +94,15 @@ const JuegosPage = () => {
 
   const [franIndex, setFranIndex] = useState<number>(0);
 
+  // Auto-advance para los heroes (SEGA, NINTENDO, PLAYSTATION)
+  useEffect(() => {
+    if (estaCargando) return;
+    const intervalo = setInterval(() => {
+      setFranIndex(prev => prev === franquiciaJuegos.length - 1 ? 0 : prev + 1);
+    }, 7000);
+    return () => clearInterval(intervalo);
+  }, [franIndex, estaCargando, franquiciaJuegos.length]);
+
   // --- Nintendo section state ---
   const [nintendoJuegos, setNintendoJuegos] = useState<FranJuego[]>([
     { id: 201, titulo: 'The Legend of Zelda: Tears of the Kingdom', imagen: '/imgs/lgtotk.png', descripcion: 'Aventuras en Hyrule con nuevas habilidades.', categories: ['Aventura', 'Exploración'] },
@@ -121,6 +130,24 @@ const JuegosPage = () => {
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Auto-advance Nintendo
+  useEffect(() => {
+    if (estaCargando) return;
+    const intervalo = setInterval(() => {
+      setNintendoIndex(prev => prev === nintendoJuegos.length - 1 ? 0 : prev + 1);
+    }, 7000);
+    return () => clearInterval(intervalo);
+  }, [nintendoIndex, estaCargando, nintendoJuegos.length]);
+
+  // Auto-advance PlayStation
+  useEffect(() => {
+    if (estaCargando) return;
+    const intervalo = setInterval(() => {
+      setPsIndex(prev => prev === psJuegos.length - 1 ? 0 : prev + 1);
+    }, 7000);
+    return () => clearInterval(intervalo);
+  }, [psIndex, estaCargando, psJuegos.length]);
 
   const siguienteJuego = () => {
     setIndiceActual((prevIndex) => 
