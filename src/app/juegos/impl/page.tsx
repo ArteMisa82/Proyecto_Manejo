@@ -24,7 +24,7 @@ const JuegosPage = () => {
       precioOriginal: 69.99,
       precioOferta: 39.99,
       descuento: 50,
-      imagen: "/imgs/gow.png",
+      imagen: "/imgs/gow.jpg",
       destacado: true,
       descripcion: "Únete a Kratos y Atreus para explorar los míticos nueve reinos en búsqueda de respuestas y aliados en God of War Ragnarok."
     },
@@ -34,7 +34,7 @@ const JuegosPage = () => {
       precioOriginal: 59.99,
       precioOferta: 34.99,
       descuento: 50,
-      imagen: "/imgs/frontiers.jpg",
+      imagen: "/imgs/sonf.avif",
       destacado: false,
       descripcion: "Conviértete en Sonic y viaja para desvelar los misterios de una antigua civilización amenazada por hordas de robots."
     },
@@ -82,10 +82,10 @@ const JuegosPage = () => {
   }
 
   const [franquiciaJuegos] = useState<FranJuego[]>([
-    { id: 101, titulo: 'Sonic Generations', imagen: '/imgs/frontiers.jpg', descripcion: 'Sonic Generations - colección de niveles clásicos y modernos.' },
-    { id: 102, titulo: 'Sonic Forces', imagen: '/imgs/unleashed.jpg', descripcion: 'Sonic Forces - acción a gran velocidad con nuevos modos.' },
-    { id: 103, titulo: 'Sonic Mania', imagen: '/imgs/gow.png', descripcion: 'Sonic Mania - regreso a los clásicos niveles 2D.' },
-    { id: 104, titulo: 'Yakuza: Like a Dragon', imagen: '/imgs/totk.jpg', descripcion: 'Yakuza: nueva entrega de la franquicia (no es Sonic pero lo uso como placeholder).' }
+    { id: 101, titulo: 'Sonic Racing Crossworlds', imagen: '/imgs/crossworlds.avif', descripcion: 'Sonic Generations - colección de niveles clásicos y modernos.' },
+    { id: 102, titulo: 'Yakuza Kiwami 3', imagen: '/imgs/yakuza3.jpg', descripcion: 'Sonic Forces - acción a gran velocidad con nuevos modos.' },
+    { id: 103, titulo: 'Hatsune Miku: Project Diva Mega Mix+', imagen: '/imgs/mikuuu.jpg', descripcion: 'Sonic Mania - regreso a los clásicos niveles 2D.' },
+    { id: 104, titulo: 'Sonic x Shadow Generations ', imagen: '/imgs/sndw.png', descripcion: 'Yakuza: nueva entrega de la franquicia (no es Sonic pero lo uso como placeholder).' }
   ]);
 
   const [franIndex, setFranIndex] = useState<number>(0);
@@ -248,14 +248,17 @@ const JuegosPage = () => {
       {/* Sección de Franquicias - SEGA */}
       <section className="franquicias-seccion">
         <div className="contenedor-franquicia">
-          <h2>Franquicia: SEGA</h2>
+          <div className="fran-header">
+            <Image src="/imgs/SEGAA.png" alt="SEGA" width={200} height={98} />
+          </div>
           <p className="subtitulo">Trailer destacado</p>
 
           <div className="trailer-wrapper">
             {/* Embed de YouTube - sustituye VIDEO_ID por el id real si lo tienes */}
             <iframe
+              
               width="100%"
-              height="820"
+              height="620"
               src="https://www.youtube.com/embed/3_xAuG3JfIg"
               title="SEGA Trailer"
               frameBorder="0"
@@ -264,19 +267,33 @@ const JuegosPage = () => {
             />
           </div>
 
-          <div className="carrusel-franquicia">
-            <button className="boton-navegacion boton-anterior-fran" onClick={() => setFranIndex(prev => prev === 0 ? franquiciaJuegos.length - 1 : prev - 1)}>‹</button>
+          <div className="fran-hero">
+            <button className="hero-nav hero-prev" onClick={() => setFranIndex(prev => prev === 0 ? franquiciaJuegos.length - 1 : prev - 1)}>‹</button>
 
-            <div className="lista-franquicia">
-              {franquiciaJuegos.map((g, i) => (
-                <div key={g.id} className={`tarjeta-fran ${i === franIndex ? 'activo' : ''}`} onClick={() => setFranIndex(i)}>
-                  <Image src={g.imagen} alt={g.titulo} width={240} height={140} style={{ objectFit: 'cover', borderRadius: 8 }} />
-                  <div className="titulo-fran">{g.titulo}</div>
+            <div className="hero-slide">
+              {franquiciaJuegos[franIndex] && (
+                <div className="hero-media">
+                  <Image
+                    src={franquiciaJuegos[franIndex].imagen}
+                    alt={franquiciaJuegos[franIndex].titulo}
+                    width={1400}
+                    height={560}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                  <div className="hero-overlay">
+                    <span className="badge-hero">YA DISPONIBLE</span>
+                    <h3 className="hero-title">{franquiciaJuegos[franIndex].titulo}</h3>
+                    <div className="hero-actions">
+                      <button className="boton-comprar">COMPRAR</button>
+                      <button className="boton-info">MÁS INFORMACIÓN</button>
+                      <button className="boton-play">▶</button>
+                    </div>
+                  </div>
                 </div>
-              ))}
+              )}
             </div>
 
-            <button className="boton-navegacion boton-siguiente-fran" onClick={() => setFranIndex(prev => prev === franquiciaJuegos.length - 1 ? 0 : prev + 1)}>›</button>
+            <button className="hero-nav hero-next" onClick={() => setFranIndex(prev => prev === franquiciaJuegos.length - 1 ? 0 : prev + 1)}>›</button>
           </div>
 
           <div className="descripcion-fran">
