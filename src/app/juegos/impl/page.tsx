@@ -79,16 +79,38 @@ const JuegosPage = () => {
     titulo: string;
     imagen: string;
     descripcion?: string;
+    categories: string[];
   }
-
-  const [franquiciaJuegos] = useState<FranJuego[]>([
-    { id: 101, titulo: 'Sonic Racing Crossworlds', imagen: '/imgs/crossworlds.avif', descripcion: 'Sonic Generations - colección de niveles clásicos y modernos.' },
-    { id: 102, titulo: 'Yakuza Kiwami 3', imagen: '/imgs/yakuza3.jpg', descripcion: 'Sonic Forces - acción a gran velocidad con nuevos modos.' },
-    { id: 103, titulo: 'Hatsune Miku: Project Diva Mega Mix+', imagen: '/imgs/mikuuu.jpg', descripcion: 'Sonic Mania - regreso a los clásicos niveles 2D.' },
-    { id: 104, titulo: 'Sonic x Shadow Generations ', imagen: '/imgs/sndw.png', descripcion: 'Yakuza: nueva entrega de la franquicia (no es Sonic pero lo uso como placeholder).' }
+  const [franquiciaJuegos, setFranquiciaJuegos] = useState<FranJuego[]>([
+    { id: 101, titulo: 'Sonic Racing Crossworlds', imagen: '/imgs/crossworlds.avif', categories: ['Acción', 'Carreras'] },
+    { id: 102, titulo: 'Yakuza Kiwami 3', imagen: '/imgs/yakuza3.jpg', categories: ['Aventura'] },
+    { id: 103, titulo: 'Hatsune Miku: Project Diva Mega Mix+', imagen: '/imgs/mikuuu.jpg', categories: ['Ritmo', 'Música'] },
+    { id: 104, titulo: 'Sonic x Shadow Generations ', imagen: '/imgs/sndw.png', categories: ['Acción'] }
   ]);
 
+  // Estado para editar categorías por juego (SEGA)
+  const [editingCats, setEditingCats] = useState(false);
+  const [tempCats, setTempCats] = useState<string[]>([]);
+
   const [franIndex, setFranIndex] = useState<number>(0);
+
+  // --- Nintendo section state ---
+  const [nintendoJuegos, setNintendoJuegos] = useState<FranJuego[]>([
+    { id: 201, titulo: 'The Legend of Zelda: Tears of the Kingdom', imagen: '/imgs/totk.jpg', descripcion: 'Aventuras en Hyrule con nuevas habilidades.', categories: ['Aventura', 'Exploración'] },
+    { id: 202, titulo: 'Mario Kart 9 (placeholder)', imagen: '/imgs/mariokart.jpg', descripcion: 'Carreras clásicas con personajes icónicos.', categories: ['Carreras'] }
+  ]);
+  const [nintendoIndex, setNintendoIndex] = useState<number>(0);
+  const [nintendoEditing, setNintendoEditing] = useState(false);
+  const [nintendoTempCats, setNintendoTempCats] = useState<string[]>([]);
+
+  // --- PlayStation section state ---
+  const [psJuegos, setPsJuegos] = useState<FranJuego[]>([
+    { id: 301, titulo: 'God of War: Ragnarok (PS)', imagen: '/imgs/gow.jpg', descripcion: 'Kratos vuelve para enfrentar nuevas amenazas.', categories: ['Acción'] },
+    { id: 302, titulo: 'Uncharted: Legacy (placeholder)', imagen: '/imgs/uncharted.jpg', descripcion: 'Aventura y exploración en localizaciones exóticas.', categories: ['Aventura', 'Acción'] }
+  ]);
+  const [psIndex, setPsIndex] = useState<number>(0);
+  const [psEditing, setPsEditing] = useState(false);
+  const [psTempCats, setPsTempCats] = useState<string[]>([]);
 
   // Simular carga inicial
   useEffect(() => {
@@ -148,7 +170,6 @@ const JuegosPage = () => {
             <a href="#" className="nav-link">Inicio</a>
             <a href="#" className="nav-link activo">Juegos</a>
             <a href="#" className="nav-link">Ofertas</a>
-            <a href="#" className="nav-link">Carrito</a>
           </nav>
         </div>
       </header>
@@ -281,12 +302,64 @@ const JuegosPage = () => {
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                   <div className="hero-overlay">
-                    <span className="badge-hero">YA DISPONIBLE</span>
-                    <h3 className="hero-title">{franquiciaJuegos[franIndex].titulo}</h3>
-                    <div className="hero-actions">
-                      <button className="boton-comprar">COMPRAR</button>
-                      <button className="boton-info">MÁS INFORMACIÓN</button>
-                      <button className="boton-play">▶</button>
+                    <div className="hero-top">
+                      <div>
+                        <span className="badge-hero">YA DISPONIBLE</span>
+                        <h3 className="hero-title">{franquiciaJuegos[franIndex].titulo}</h3>
+                      </div>
+                      <div>
+                        <button
+                          className="cat-edit-toggle"
+                          onClick={() => {
+                            // iniciar edición con copia de las categorías actuales
+                            setTempCats(franquiciaJuegos[franIndex].categories.slice());
+                            setEditingCats(true);
+                          }}
+                          aria-label="Editar categorías"
+                        >✏️</button>
+                      </div>
+                    </div>
+
+                    <div className="hero-bottom">
+                      {editingCats ? (
+                        <div className="cat-edit-panel">
+                          <div className="cat-edit-list">
+                            {tempCats.map((cat, ci) => (
+                              <div className="cat-edit-row" key={ci}>
+                                <input
+                                  value={cat}
+                                  onChange={(e) => {
+                                    const v = e.target.value;
+                                    setTempCats(prev => {
+                                      const copy = [...prev];
+                                      copy[ci] = v;
+                                      return copy;
+                                    });
+                                  }}
+                                />
+                                <button className="cat-remove" onClick={() => {
+                                  setTempCats(prev => prev.filter((_, ix) => ix !== ci));
+                                }}>✖</button>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="cat-edit-actions">
+                            <button className="cat-add" onClick={() => setTempCats(prev => [...prev, ''])}>+ Añadir</button>
+                            <button className="cat-save" onClick={() => {
+                              // guardar cambios en el juego actual
+                              setFranquiciaJuegos(prev => prev.map((g, i) => i === franIndex ? { ...g, categories: tempCats.filter(t => t.trim() !== '') } : g));
+                              setEditingCats(false);
+                            }}>Guardar</button>
+                            <button className="cat-cancel" onClick={() => setEditingCats(false)}>Cancelar</button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="hero-categories">
+                          {franquiciaJuegos[franIndex].categories.map((cat, i) => (
+                            <button key={i} className="cat-btn">{cat}</button>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -302,7 +375,211 @@ const JuegosPage = () => {
         </div>
       </section>
 
-     
+      {/* Sección de Franquicias - NINTENDO */}
+      <section className="franquicias-seccion">
+        <div className="contenedor-franquicia">
+          <div className="fran-header">
+            <Image src="/imgs/nintendo.png" alt="Nintendo" width={250} height={108} />
+          </div>
+          <p className="subtitulo">Trailer destacado</p>
+
+          <div className="trailer-wrapper">
+            <iframe
+              width="100%"
+              height="520"
+              src="https://www.youtube.com/embed/uHGShqcAHlQ"
+              title="Nintendo Trailer"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+
+          <div className="fran-hero">
+            <button className="hero-nav hero-prev" onClick={() => setNintendoIndex(prev => prev === 0 ? nintendoJuegos.length - 1 : prev - 1)}>‹</button>
+
+            <div className="hero-slide">
+              {nintendoJuegos[nintendoIndex] && (
+                <div className="hero-media">
+                  <Image
+                    src={nintendoJuegos[nintendoIndex].imagen}
+                    alt={nintendoJuegos[nintendoIndex].titulo}
+                    width={1400}
+                    height={560}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                  <div className="hero-overlay">
+                    <div className="hero-top">
+                      <div>
+                        <span className="badge-hero">YA DISPONIBLE</span>
+                        <h3 className="hero-title">{nintendoJuegos[nintendoIndex].titulo}</h3>
+                      </div>
+                      <div>
+                        <button
+                          className="cat-edit-toggle"
+                          onClick={() => {
+                            setNintendoTempCats(nintendoJuegos[nintendoIndex].categories.slice());
+                            setNintendoEditing(true);
+                          }}
+                          aria-label="Editar categorías"
+                        >✏️</button>
+                      </div>
+                    </div>
+
+                    <div className="hero-bottom">
+                      {nintendoEditing ? (
+                        <div className="cat-edit-panel">
+                          <div className="cat-edit-list">
+                            {nintendoTempCats.map((cat, ci) => (
+                              <div className="cat-edit-row" key={ci}>
+                                <input
+                                  value={cat}
+                                  onChange={(e) => {
+                                    const v = e.target.value;
+                                    setNintendoTempCats(prev => {
+                                      const copy = [...prev];
+                                      copy[ci] = v;
+                                      return copy;
+                                    });
+                                  }}
+                                />
+                                <button className="cat-remove" onClick={() => setNintendoTempCats(prev => prev.filter((_, ix) => ix !== ci))}>✖</button>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="cat-edit-actions">
+                            <button className="cat-add" onClick={() => setNintendoTempCats(prev => [...prev, ''])}>+ Añadir</button>
+                            <button className="cat-save" onClick={() => {
+                              setNintendoJuegos(prev => prev.map((g, i) => i === nintendoIndex ? { ...g, categories: nintendoTempCats.filter(t => t.trim() !== '') } : g));
+                              setNintendoEditing(false);
+                            }}>Guardar</button>
+                            <button className="cat-cancel" onClick={() => setNintendoEditing(false)}>Cancelar</button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="hero-categories">
+                          {nintendoJuegos[nintendoIndex].categories.map((cat, i) => (
+                            <button key={i} className="cat-btn">{cat}</button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <button className="hero-nav hero-next" onClick={() => setNintendoIndex(prev => prev === nintendoJuegos.length - 1 ? 0 : prev + 1)}>›</button>
+          </div>
+
+          <div className="descripcion-fran">
+            <p>{nintendoJuegos[nintendoIndex].descripcion}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección de Franquicias - PLAYSTATION */}
+      <section className="franquicias-seccion">
+        <div className="contenedor-franquicia">
+          <div className="fran-header">
+            <Image src="/imgs/psss.png" alt="PlayStation" width={200} height={98} />
+          </div>
+          <p className="subtitulo">Trailer destacado</p>
+
+          <div className="trailer-wrapper">
+            <iframe
+              width="100%"
+              height="520"
+              src="https://www.youtube.com/embed/vtFhDrMIZjE"
+              title="PlayStation Trailer"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+
+          <div className="fran-hero">
+            <button className="hero-nav hero-prev" onClick={() => setPsIndex(prev => prev === 0 ? psJuegos.length - 1 : prev - 1)}>‹</button>
+
+            <div className="hero-slide">
+              {psJuegos[psIndex] && (
+                <div className="hero-media">
+                  <Image
+                    src={psJuegos[psIndex].imagen}
+                    alt={psJuegos[psIndex].titulo}
+                    width={1400}
+                    height={560}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                  <div className="hero-overlay">
+                    <div className="hero-top">
+                      <div>
+                        <span className="badge-hero">YA DISPONIBLE</span>
+                        <h3 className="hero-title">{psJuegos[psIndex].titulo}</h3>
+                      </div>
+                      <div>
+                        <button
+                          className="cat-edit-toggle"
+                          onClick={() => {
+                            setPsTempCats(psJuegos[psIndex].categories.slice());
+                            setPsEditing(true);
+                          }}
+                          aria-label="Editar categorías"
+                        >✏️</button>
+                      </div>
+                    </div>
+
+                    <div className="hero-bottom">
+                      {psEditing ? (
+                        <div className="cat-edit-panel">
+                          <div className="cat-edit-list">
+                            {psTempCats.map((cat, ci) => (
+                              <div className="cat-edit-row" key={ci}>
+                                <input
+                                  value={cat}
+                                  onChange={(e) => {
+                                    const v = e.target.value;
+                                    setPsTempCats(prev => {
+                                      const copy = [...prev];
+                                      copy[ci] = v;
+                                      return copy;
+                                    });
+                                  }}
+                                />
+                                <button className="cat-remove" onClick={() => setPsTempCats(prev => prev.filter((_, ix) => ix !== ci))}>✖</button>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="cat-edit-actions">
+                            <button className="cat-add" onClick={() => setPsTempCats(prev => [...prev, ''])}>+ Añadir</button>
+                            <button className="cat-save" onClick={() => {
+                              setPsJuegos(prev => prev.map((g, i) => i === psIndex ? { ...g, categories: psTempCats.filter(t => t.trim() !== '') } : g));
+                              setPsEditing(false);
+                            }}>Guardar</button>
+                            <button className="cat-cancel" onClick={() => setPsEditing(false)}>Cancelar</button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="hero-categories">
+                          {psJuegos[psIndex].categories.map((cat, i) => (
+                            <button key={i} className="cat-btn">{cat}</button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <button className="hero-nav hero-next" onClick={() => setPsIndex(prev => prev === psJuegos.length - 1 ? 0 : prev + 1)}>›</button>
+          </div>
+
+          <div className="descripcion-fran">
+            <p>{psJuegos[psIndex].descripcion}</p>
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="footer-juegos">
