@@ -38,6 +38,7 @@ body{background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;line-heig
 .hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
 .badge-hero{display:inline-block;background:linear-gradient(90deg,#0c4cff,#1e90ff);padding:.45rem .8rem;border-radius:20px;font-weight:800;margin-bottom:.6rem}
 .hero-title{font-size:2.4rem;margin:0 0 .6rem}
+.hero-desc{font-size:1rem;color:#d6e9ff;max-width:70%;margin:0 0 .6rem;text-align:left}
 .hero-actions{display:flex;gap:0.8rem;align-items:center}
 .boton-play{background:#0c4cff;color:#fff;border:0;padding:.6rem 1rem;border-radius:50%;font-size:1.1rem;cursor:pointer}
 

@@ -82,10 +82,10 @@ const JuegosPage = () => {
     categories: string[];
   }
   const [franquiciaJuegos, setFranquiciaJuegos] = useState<FranJuego[]>([
-    { id: 101, titulo: 'Sonic Racing Crossworlds', imagen: '/imgs/crossworlds.avif', categories: ['Acción', 'Carreras'] },
-    { id: 102, titulo: 'Yakuza Kiwami 3', imagen: '/imgs/yakuza3.jpg', categories: ['Aventura'] },
-    { id: 103, titulo: 'Hatsune Miku: Project Diva Mega Mix+', imagen: '/imgs/mikuuu.jpg', categories: ['Ritmo', 'Música'] },
-    { id: 104, titulo: 'Sonic x Shadow Generations ', imagen: '/imgs/sndw.png', categories: ['Acción'] }
+    { id: 101, titulo: 'Sonic Racing Crossworlds', imagen: '/imgs/crossworlds.avif', descripcion: 'Carreras a gran velocidad con pistas inspiradas en clásicos y nuevos entornos.', categories: ['Acción', 'Carreras'] },
+    { id: 102, titulo: 'Yakuza Kiwami 3', imagen: '/imgs/yakuza3.jpg', descripcion: 'Combates intensos y narrativa cinematográfica en la entrega más reciente.', categories: ['Aventura'] },
+    { id: 103, titulo: 'Hatsune Miku: Project Diva Mega Mix+', imagen: '/imgs/mikuuu.jpg', descripcion: 'Ritmos frenéticos y canciones icónicas en un título de música para fans.', categories: ['Ritmo', 'Música'] },
+    { id: 104, titulo: 'Sonic x Shadow Generations ', imagen: '/imgs/sndw.png', descripcion: 'Un crossover con niveles veloces y enfrentamientos épicos.', categories: ['Acción'] }
   ]);
 
   // Estado para editar categorías por juego (SEGA)
@@ -96,8 +96,8 @@ const JuegosPage = () => {
 
   // --- Nintendo section state ---
   const [nintendoJuegos, setNintendoJuegos] = useState<FranJuego[]>([
-    { id: 201, titulo: 'The Legend of Zelda: Tears of the Kingdom', imagen: '/imgs/totk.jpg', descripcion: 'Aventuras en Hyrule con nuevas habilidades.', categories: ['Aventura', 'Exploración'] },
-    { id: 202, titulo: 'Mario Kart 9 (placeholder)', imagen: '/imgs/mariokart.jpg', descripcion: 'Carreras clásicas con personajes icónicos.', categories: ['Carreras'] }
+    { id: 201, titulo: 'The Legend of Zelda: Tears of the Kingdom', imagen: '/imgs/lgtotk.png', descripcion: 'Aventuras en Hyrule con nuevas habilidades.', categories: ['Aventura', 'Exploración'] },
+    { id: 202, titulo: 'Mario Kart 8 Deluxe', imagen: '/imgs/mario.jpg', descripcion: 'Carreras clásicas con personajes icónicos.', categories: ['Carreras'] }
   ]);
   const [nintendoIndex, setNintendoIndex] = useState<number>(0);
   const [nintendoEditing, setNintendoEditing] = useState(false);
@@ -105,8 +105,10 @@ const JuegosPage = () => {
 
   // --- PlayStation section state ---
   const [psJuegos, setPsJuegos] = useState<FranJuego[]>([
-    { id: 301, titulo: 'God of War: Ragnarok (PS)', imagen: '/imgs/gow.jpg', descripcion: 'Kratos vuelve para enfrentar nuevas amenazas.', categories: ['Acción'] },
-    { id: 302, titulo: 'Uncharted: Legacy (placeholder)', imagen: '/imgs/uncharted.jpg', descripcion: 'Aventura y exploración en localizaciones exóticas.', categories: ['Aventura', 'Acción'] }
+    { id: 301, titulo: 'God of War: Ragnarok', imagen: '/imgs/gow.jpg', descripcion: 'Únete a Kratos y Atreus para explorar los míticos nueve reinos en búsqueda de respuestas y aliados en God of War Ragnarok.', categories: ['Acción'] },
+  { id: 302, titulo: 'Ghost of Yotei', imagen: '/imgs/ghost.webp', descripcion: 'Ambientado unos 300 años después del aclamado Ghost of Tsushima, Ghost of Yōtei es una experiencia independiente que transcurre en el siglo XVII en el Japón rural.', categories: ['Aventura', 'Acción'] },
+    { id: 303, titulo: 'Little NightmaresIII', imagen: '/imgs/little.jpg', descripcion: 'Little Nightmares III es una perturbadora aventura atmosférica en la que los grandes amigos Low y Alone, que quieren huir de la Nada', categories: ['Aventura', 'Acción'] },
+    { id: 304, titulo: "Battlefield 6", imagen: '/imgs/battle.jpg', descripcion: 'La experiencia bélica definitiva. Lucha en intensos combates de infantería, atraviesa los cielos en combate aéreo, destruye tu entorno y consigue una arma letal', categories: ['Acción', 'Superhéroes'] }
   ]);
   const [psIndex, setPsIndex] = useState<number>(0);
   const [psEditing, setPsEditing] = useState(false);
@@ -306,6 +308,9 @@ const JuegosPage = () => {
                       <div>
                         <span className="badge-hero">YA DISPONIBLE</span>
                         <h3 className="hero-title">{franquiciaJuegos[franIndex].titulo}</h3>
+                        {franquiciaJuegos[franIndex].descripcion && (
+                          <p className="hero-desc">{franquiciaJuegos[franIndex].descripcion}</p>
+                        )}
                       </div>
                       <div>
                         <button
@@ -316,7 +321,7 @@ const JuegosPage = () => {
                             setEditingCats(true);
                           }}
                           aria-label="Editar categorías"
-                        >✏️</button>
+                        ></button>
                       </div>
                     </div>
 
@@ -369,9 +374,7 @@ const JuegosPage = () => {
             <button className="hero-nav hero-next" onClick={() => setFranIndex(prev => prev === franquiciaJuegos.length - 1 ? 0 : prev + 1)}>›</button>
           </div>
 
-          <div className="descripcion-fran">
-            <p>{franquiciaJuegos[franIndex].descripcion}</p>
-          </div>
+          
         </div>
       </section>
 
@@ -413,6 +416,9 @@ const JuegosPage = () => {
                       <div>
                         <span className="badge-hero">YA DISPONIBLE</span>
                         <h3 className="hero-title">{nintendoJuegos[nintendoIndex].titulo}</h3>
+                        {nintendoJuegos[nintendoIndex].descripcion && (
+                          <p className="hero-desc">{nintendoJuegos[nintendoIndex].descripcion}</p>
+                        )}
                       </div>
                       <div>
                         <button
@@ -422,7 +428,7 @@ const JuegosPage = () => {
                             setNintendoEditing(true);
                           }}
                           aria-label="Editar categorías"
-                        >✏️</button>
+                        ></button>
                       </div>
                     </div>
 
@@ -472,9 +478,7 @@ const JuegosPage = () => {
             <button className="hero-nav hero-next" onClick={() => setNintendoIndex(prev => prev === nintendoJuegos.length - 1 ? 0 : prev + 1)}>›</button>
           </div>
 
-          <div className="descripcion-fran">
-            <p>{nintendoJuegos[nintendoIndex].descripcion}</p>
-          </div>
+          
         </div>
       </section>
 
@@ -516,6 +520,9 @@ const JuegosPage = () => {
                       <div>
                         <span className="badge-hero">YA DISPONIBLE</span>
                         <h3 className="hero-title">{psJuegos[psIndex].titulo}</h3>
+                        {psJuegos[psIndex].descripcion && (
+                          <p className="hero-desc">{psJuegos[psIndex].descripcion}</p>
+                        )}
                       </div>
                       <div>
                         <button
@@ -525,7 +532,7 @@ const JuegosPage = () => {
                             setPsEditing(true);
                           }}
                           aria-label="Editar categorías"
-                        >✏️</button>
+                        ></button>
                       </div>
                     </div>
 
@@ -575,9 +582,7 @@ const JuegosPage = () => {
             <button className="hero-nav hero-next" onClick={() => setPsIndex(prev => prev === psJuegos.length - 1 ? 0 : prev + 1)}>›</button>
           </div>
 
-          <div className="descripcion-fran">
-            <p>{psJuegos[psIndex].descripcion}</p>
-          </div>
+          
         </div>
       </section>
 
