@@ -19,7 +19,7 @@ export type GalleryItem = {
 export const galleryItems: GalleryItem[] = [
   {
     id: 'g1',
-    title: 'Nintendo Switch 2',
+    title: 'Xbox: camara, consola y mando',
     type: 'image',
     category: 'Consolas',
     src: '/imghardware/consola1.jpg',
@@ -27,7 +27,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'g2',
-    title: 'Switch OLED',
+    title: 'Playstation: Consola + Control de Lady Dimitrescu',
     type: 'image',
     category: 'Consolas',
     src: '/imghardware/consola2.jpg',
@@ -35,7 +35,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'g3',
-    title: 'Nintendo 3DS',
+    title: 'Consola Nintendo - Princesa Peach',
     type: 'image',
     category: 'Consolas',
     src: '/imghardware/consola3.jpg',
@@ -43,7 +43,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'g4',
-    title: 'Joy-Con',
+    title: 'Control inalámbrico Shadow ',
     type: 'image',
     category: 'Accesorios',
     src: '/imghardware/accesorio1.jpg',
@@ -51,7 +51,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'g5',
-    title: 'Joy-Con',
+    title: 'Accesorios Gamer',
     type: 'image',
     category: 'Accesorios',
     src: '/imghardware/accesorio2.jpg',
@@ -59,7 +59,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'g6',
-    title: 'Joy-Con',
+    title: 'Audifonos de Sonic /niños',
     type: 'image',
     category: 'Accesorios',
     src: '/imghardware/accesorio3.jpg',
@@ -67,19 +67,19 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     id: 'v1',
-    title: 'Uso de Joy-Con',
+    title: 'Nintendo',
     type: 'video',
     category: 'Videos',
-    src: 'https://www.youtube.com/embed/VIDEO_ID',
-    thumb: '/imghardware/joycon.jpg',
+    src: 'https://youtu.be/JHLx_SriAFo',
+    thumb: '/imghardware/nintendo.jpg',
   },
   {
     id: 'v2',
-    title: 'Steam Deck tour',
+    title: 'PlayStation',
     type: 'video',
     category: 'Videos',
-    src: 'https://www.youtube.com/embed/VIDEO_ID_2',
-    thumb: '/imghardware/steam-deck.jpg',
+    src: 'https://youtu.be/6HaRMiTfvks',
+    thumb: '/imghardware/play.jpg',
   },
 
   // --- Comunidad (fanarts/cómics que agregas manualmente) ---

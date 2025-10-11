@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { galleryItems, type GalleryItem } from './data/gallery';
+import HardwareHeader from '../imp/HardwareHeader'; // 👈 menú reutilizable
 import '../imp/impStyles.css';
 import './galleryStyles.css';
 
@@ -17,6 +18,8 @@ export default function GaleriaPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* 🔹 Menú lateral (mismo de Hardware principal) */}
+      <HardwareHeader />
 
       {/* PORTADA / BANNER */}
       <section className="relative w-full overflow-hidden">
@@ -65,27 +68,6 @@ export default function GaleriaPage() {
           ))}
         </div>
       </section>
-
-      {/* VIDEOS DE USO (destacados) */}
-      <section className="mx-auto max-w-7xl px-4 pb-16">
-        <h3 className="text-lg font-semibold mb-4">Videos de uso de equipos</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {base
-            .filter((i) => i.type === 'video')
-            .slice(0, 2)
-            .map((v) => (
-              <div key={v.id} className="video-wrapper rounded-xl overflow-hidden">
-                <iframe
-                  src={v.src}
-                  title={v.title}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            ))}
-        </div>
-      </section>
     </div>
   );
 }
@@ -116,7 +98,7 @@ function Card({ item }: { item: GalleryItem }) {
             : item.category}
         </p>
 
-        {/* Tags solo para fanart (opcional) */}
+        {/* Tags solo para fanart */}
         {isFanart && item.tags?.length ? (
           <div className="mt-2 flex flex-wrap gap-1">
             {item.tags.map((t) => (
@@ -125,7 +107,7 @@ function Card({ item }: { item: GalleryItem }) {
           </div>
         ) : null}
 
-        {/* Acción */}
+        {/* Botón */}
         {isVideo ? (
           <a
             href={item.src}
