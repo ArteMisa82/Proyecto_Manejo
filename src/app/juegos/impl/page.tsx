@@ -73,6 +73,23 @@ const JuegosPage = () => {
   const [indiceActual, setIndiceActual] = useState(0);
   const [estaCargando, setEstaCargando] = useState(true);
 
+  // Franquicia SEGA - datos y estado para el carrusel
+  interface FranJuego {
+    id: number;
+    titulo: string;
+    imagen: string;
+    descripcion?: string;
+  }
+
+  const [franquiciaJuegos] = useState<FranJuego[]>([
+    { id: 101, titulo: 'Sonic Generations', imagen: '/imgs/frontiers.jpg', descripcion: 'Sonic Generations - colección de niveles clásicos y modernos.' },
+    { id: 102, titulo: 'Sonic Forces', imagen: '/imgs/unleashed.jpg', descripcion: 'Sonic Forces - acción a gran velocidad con nuevos modos.' },
+    { id: 103, titulo: 'Sonic Mania', imagen: '/imgs/gow.png', descripcion: 'Sonic Mania - regreso a los clásicos niveles 2D.' },
+    { id: 104, titulo: 'Yakuza: Like a Dragon', imagen: '/imgs/totk.jpg', descripcion: 'Yakuza: nueva entrega de la franquicia (no es Sonic pero lo uso como placeholder).' }
+  ]);
+
+  const [franIndex, setFranIndex] = useState<number>(0);
+
   // Simular carga inicial
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -225,6 +242,46 @@ const JuegosPage = () => {
 
         <div className="contador-juegos">
           <span>{indiceActual + 1} / {juegos.length}</span>
+        </div>
+      </section>
+
+      {/* Sección de Franquicias - SEGA */}
+      <section className="franquicias-seccion">
+        <div className="contenedor-franquicia">
+          <h2>Franquicia: SEGA</h2>
+          <p className="subtitulo">Trailer destacado</p>
+
+          <div className="trailer-wrapper">
+            {/* Embed de YouTube - sustituye VIDEO_ID por el id real si lo tienes */}
+            <iframe
+              width="100%"
+              height="820"
+              src="https://www.youtube.com/embed/3_xAuG3JfIg"
+              title="SEGA Trailer"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+
+          <div className="carrusel-franquicia">
+            <button className="boton-navegacion boton-anterior-fran" onClick={() => setFranIndex(prev => prev === 0 ? franquiciaJuegos.length - 1 : prev - 1)}>‹</button>
+
+            <div className="lista-franquicia">
+              {franquiciaJuegos.map((g, i) => (
+                <div key={g.id} className={`tarjeta-fran ${i === franIndex ? 'activo' : ''}`} onClick={() => setFranIndex(i)}>
+                  <Image src={g.imagen} alt={g.titulo} width={240} height={140} style={{ objectFit: 'cover', borderRadius: 8 }} />
+                  <div className="titulo-fran">{g.titulo}</div>
+                </div>
+              ))}
+            </div>
+
+            <button className="boton-navegacion boton-siguiente-fran" onClick={() => setFranIndex(prev => prev === franquiciaJuegos.length - 1 ? 0 : prev + 1)}>›</button>
+          </div>
+
+          <div className="descripcion-fran">
+            <p>{franquiciaJuegos[franIndex].descripcion}</p>
+          </div>
         </div>
       </section>
 
