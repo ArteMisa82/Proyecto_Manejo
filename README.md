@@ -4,14 +4,14 @@
 
 ## 🧰 Tecnologías Utilizadas
 
-## 🖥️ Frontend
+### 🖥️ Frontend
 
 - ⚡ **Next.js** – Framework de React para renderizado rápido y eficiente
 - 🟦 **TypeScript** – Tipado estático para mayor seguridad y mantenimiento del código
 - 💅 **Tailwind CSS** – Diseño moderno, responsive y personalizable
 - 🧱 **CSS** – Estilos personalizados y animaciones adicionales
 
-## ⚙️ Backend y Base de Datos
+### ⚙️ Backend y Base de Datos
 
 - 🧩 **Prisma ORM** – Mapeo de datos y conexión con la base de datos
 - 🐘 **PostgreSQL** – Sistema de gestión de base de datos relacional
