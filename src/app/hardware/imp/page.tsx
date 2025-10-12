@@ -13,18 +13,21 @@ export default function HardwarePage() {
       <TopNav />
 
       {/* HERO */}
-      <section className="relative w-full overflow-hidden">
-        <div className="relative w-full">
-          <Image
-            src="/imghardware/hero.jpg"
-            alt="Banner hardware"
-            width={1820}
-            height={1000}
-            priority
-            className="w-full h-[80vh] md:h-[90vh] object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-black/35 md:bg-black/30" />
-        </div>
+<section className="relative w-full overflow-hidden">
+  <div className="relative w-full h-[30vh] md:h-[75vh] overflow-hidden">
+    <Image
+      src="/imghardware/buena2.jpg"
+      alt="Banner hardware"
+      width={1820}
+      height={1000}
+      priority
+      className="object-cover object-center w-full h-full"
+    />
+  </div>
+
+  <div className="absolute inset-0 bg-black/35 md:bg-black/30" />
+  <div className="absolute inset-0 flex items-center justify-center">
+    </div>
 
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center px-6">

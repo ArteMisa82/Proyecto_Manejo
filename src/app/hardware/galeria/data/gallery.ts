@@ -42,6 +42,14 @@ export const galleryItems: GalleryItem[] = [
     alt: 'Nintendo 3DS con cartuchos',
   },
   {
+    id: 'g8',
+    title: 'Playstation: Consola + Control de Kratos',
+    type: 'image',
+    category: 'Consolas',
+    src: '/imghardware/playkratos.jpg',
+    alt: 'Nintendo 3DS con cartuchos',
+  },
+  {
     id: 'g4',
     title: 'Control inalámbrico Shadow ',
     type: 'image',
@@ -63,6 +71,14 @@ export const galleryItems: GalleryItem[] = [
     type: 'image',
     category: 'Accesorios',
     src: '/imghardware/accesorio3.jpg',
+    alt: 'Joy-Con de colores',
+  },
+  {
+    id: 'g7',
+    title: 'Teclado personalizado de Yakuza Kiwami',
+    type: 'image',
+    category: 'Accesorios',
+    src: '/imghardware/teclado.jpg',
     alt: 'Joy-Con de colores',
   },
   {
@@ -122,6 +138,17 @@ export const galleryItems: GalleryItem[] = [
     alt: 'Mini cómic hecho por Adam',
     author: 'Adam (22)',
     tags: ['Shadow', 'acuarela'],
+    approved: true,
+  },
+  {
+    id: 'fanart_4',
+    title: 'Funko Pop personalizado de Natsume Miku',
+    type: 'fanart',
+    category: 'Museo Digital',
+    src: '/imghardware/funko.jpg',
+    alt: 'Figura hecha por Irene',
+    author: 'Irene (26)',
+    tags: ['Natsume Miku', 'figura'],
     approved: true,
   },
 ];
