@@ -296,6 +296,11 @@ COPY public.categorias (id_cat, nom_cat) FROM stdin;
 2	Aventura
 3	RPG
 4	Deportes
+5	Exploración
+6	Carreras
+7	Ritmo
+8	Música
+9	Superhéroes
 \.
 
 
