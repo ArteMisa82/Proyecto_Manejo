@@ -294,14 +294,17 @@ const JuegosPage = () => {
           <span>{indiceActual + 1} / {juegos.length}</span>
         </div>
       </section>
-
+{/* Barra Divisora SEGA */}
+      <div className="barra-franquicia barra-sega">
+        <div className="barra-logo">
+          <Image src="/imgs/SEGAA.png" alt="SEGA" width={150} height={75} />
+        </div>
+      </div>
       {/* Sección de Franquicias - SEGA */}
       <section className="franquicias-seccion">
         <div className="contenedor-franquicia">
           <div className="fran-header">
-            <Image src="/imgs/SEGAA.png" alt="SEGA" width={200} height={98} />
           </div>
-          <p className="subtitulo">Trailer destacado</p>
 
           <div className="trailer-wrapper">
             {/* Embed de YouTube - sustituye VIDEO_ID por el id real si lo tienes */}
@@ -404,14 +407,18 @@ const JuegosPage = () => {
           
         </div>
       </section>
+       {/* Barra Divisora NINTENDO */}
+      <div className="barra-franquicia barra-nintendo">
+        <div className="barra-logo">
+          <Image src="/imgs/nintendo.png" alt="Nintendo" width={180} height={80} />
+        </div>
+      </div>
 
       {/* Sección de Franquicias - NINTENDO */}
       <section className="franquicias-seccion">
         <div className="contenedor-franquicia">
           <div className="fran-header">
-            <Image src="/imgs/nintendo.png" alt="Nintendo" width={250} height={108} />
           </div>
-          <p className="subtitulo">Trailer destacado</p>
 
           <div className="trailer-wrapper">
             <iframe
@@ -508,14 +515,19 @@ const JuegosPage = () => {
           
         </div>
       </section>
+      {/* Barra Divisora PLAYSTATION */}
+      <div className="barra-franquicia barra-playstation">
+        <div className="barra-logo">
+          <Image src="/imgs/ps.png" alt="PlayStation" width={150} height={75} />
+        </div>
+      </div>
+
 
       {/* Sección de Franquicias - PLAYSTATION */}
       <section className="franquicias-seccion">
         <div className="contenedor-franquicia">
           <div className="fran-header">
-            <Image src="/imgs/psss.png" alt="PlayStation" width={200} height={98} />
           </div>
-          <p className="subtitulo">Trailer destacado</p>
 
           <div className="trailer-wrapper">
             <iframe
