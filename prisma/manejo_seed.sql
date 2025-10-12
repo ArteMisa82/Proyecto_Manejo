@@ -313,6 +313,8 @@ COPY public.franquicias (id_fra, nom_fra, des_fra) FROM stdin;
 2	Mario	Franquicia clásica de Nintendo.
 3	Final Fantasy	Juegos de rol épicos.
 4	FIFA	Juegos de fútbol.
+5	SEGA	Franquicia de videojuegos SEGA.
+6	PlayStation	Juegos exclusivos de consolas PlayStation.
 \.
 
 
