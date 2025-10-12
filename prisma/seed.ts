@@ -7,6 +7,7 @@ async function main() {
     data: [
       { nom_jue: "Ghost of Tsushima", des_jue: "Aventura samurái", pre_ori_jue: 59.99 },
       { nom_jue: "Battlefield 6", des_jue: "Shooter multijugador", pre_ori_jue: 69.99 },
+      { nom_jue: "God of War: Ragnarok", des_jue: "Únete a Kratos y Atreus para explorar los míticos nueve reinos.", pre_ori_jue: 69.99, pre_ofe_jue: 39.99, img_jue: "/imgs/gow.jpg" },
     ],
   });
 
