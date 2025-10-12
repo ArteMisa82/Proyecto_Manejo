@@ -70,7 +70,7 @@ export const galleryItems: GalleryItem[] = [
     title: 'Nintendo',
     type: 'video',
     category: 'Videos',
-    src: 'https://youtu.be/JHLx_SriAFo',
+    src: 'https://www.youtube.com/watch?v=itpcsQQvgAQ',
     thumb: '/imghardware/nintendo.jpg',
   },
   {
@@ -79,6 +79,14 @@ export const galleryItems: GalleryItem[] = [
     type: 'video',
     category: 'Videos',
     src: 'https://youtu.be/6HaRMiTfvks',
+    thumb: '/imghardware/play.jpg',
+  },
+  {
+    id: 'v3',
+    title: 'Valve (Steam Deck)',
+    type: 'video',
+    category: 'Videos',
+    src: 'https://www.youtube.com/watch?v=pHHgA4tZtkE',
     thumb: '/imghardware/play.jpg',
   },
 
@@ -91,7 +99,7 @@ export const galleryItems: GalleryItem[] = [
     src: '/imghardware/fanart_link_zelda.jpg',
     alt: 'Fanart de Link y Zelda',
     author: 'Camila (12)',
-    tags: ['zelda', 'acuarela'],
+    tags: ['zelda', 'dibujo'],
     approved: true,
   },
   {
@@ -103,6 +111,17 @@ export const galleryItems: GalleryItem[] = [
     alt: 'Mini cómic hecho por Alex',
     author: 'Alex (9)',
     tags: ['kirby', 'cómic'],
+    approved: true,
+  },
+  {
+    id: 'fanart_3',
+    title: 'Dibujo a acuarela de Shadow',
+    type: 'fanart',
+    category: 'Museo Digital',
+    src: '/imghardware/galeria1.jpg',
+    alt: 'Mini cómic hecho por Adam',
+    author: 'Adam (22)',
+    tags: ['Shadow', 'acuarela'],
     approved: true,
   },
 ];
