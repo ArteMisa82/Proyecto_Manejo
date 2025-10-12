@@ -5,9 +5,19 @@ async function main() {
   // Juegos
   await prisma.juegos.createMany({
     data: [
-      { nom_jue: "Ghost of Tsushima", des_jue: "Aventura samurái", pre_ori_jue: 59.99 },
-      { nom_jue: "Battlefield 6", des_jue: "Shooter multijugador", pre_ori_jue: 69.99 },
       { nom_jue: "God of War: Ragnarok", des_jue: "Únete a Kratos y Atreus para explorar los míticos nueve reinos.", pre_ori_jue: 69.99, pre_ofe_jue: 39.99, img_jue: "/imgs/gow.jpg" },
+      { nom_jue: "Sonic Frontiers", des_jue: "Viaja como Sonic para descubrir una antigua civilización.", pre_ori_jue: 59.99, pre_ofe_jue: 34.99, img_jue: "/imgs/sonf.avif" },
+      { nom_jue: "The Legend of Zelda: Tears of The Kingdom", des_jue: "Explora Hyrule y domina nuevas habilidades.", pre_ori_jue: 79.99, pre_ofe_jue: 49.99, img_jue: "/imgs/totk.jpg" },
+      { nom_jue: "Hollow Knight: Silksong", des_jue: "Aventura de acción y plataformas en 2D tipo metroidvania.", pre_ori_jue: 6.99, pre_ofe_jue: 3.99, img_jue: "/imgs/hollow.png" },
+      { nom_jue: "Sonic Unleashed: PC Port", des_jue: "Versión no oficial de Sonic Unleashed para PC.", pre_ori_jue: 29.99, pre_ofe_jue: 0, img_jue: "/imgs/unleashed.jpg" },
+      { nom_jue: "Sonic Racing Crossworlds", des_jue: "Carreras a gran velocidad con pistas clásicas y nuevas.", pre_ori_jue: 49.99, pre_ofe_jue: 29.99, img_jue: "/imgs/crossworlds.avif" },
+      { nom_jue: "Yakuza Kiwami 3", des_jue: "Combates intensos y narrativa cinematográfica.", pre_ori_jue: 59.99, pre_ofe_jue: 39.99, img_jue: "/imgs/yakuza3.jpg" },
+      { nom_jue: "Hatsune Miku: Project Diva Mega Mix+", des_jue: "Juego de música y ritmo frenético.", pre_ori_jue: 49.99, pre_ofe_jue: 29.99, img_jue: "/imgs/mikuuu.jpg" },
+      { nom_jue: "Sonic x Shadow Generations", des_jue: "Crossover con niveles veloces y enfrentamientos épicos.", pre_ori_jue: 39.99, pre_ofe_jue: 19.99, img_jue: "/imgs/sndw.png" },
+      { nom_jue: "Mario Kart 8 Deluxe", des_jue: "Carreras clásicas con personajes icónicos.", pre_ori_jue: 59.99, pre_ofe_jue: 39.99, img_jue: "/imgs/mario.jpg" },
+      { nom_jue: "Ghost of Yotei", des_jue: "Ambientado 300 años después de Ghost of Tsushima.", pre_ori_jue: 69.99, pre_ofe_jue: 49.99, img_jue: "/imgs/ghost.webp" },
+      { nom_jue: "Little Nightmares III", des_jue: "Aventura atmosférica con los personajes Low y Alone.", pre_ori_jue: 29.99, pre_ofe_jue: 19.99, img_jue: "/imgs/little.jpg" },
+      { nom_jue: "Battlefield 6", des_jue: "Combate bélico definitivo con acción intensa.", pre_ori_jue: 69.99, pre_ofe_jue: 49.99, img_jue: "/imgs/battle.jpg" },
     ],
   });
 
