@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { galleryItems, type GalleryItem } from './data/gallery';
-import HardwareHeader from '../imp/HardwareHeader'; // 👈 menú reutilizable
+import TopNav from '../../components/TopNav';         // 👈 NUEVO
 import '../imp/impStyles.css';
 import './galleryStyles.css';
 
@@ -18,8 +18,8 @@ export default function GaleriaPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* 🔹 Menú lateral (mismo de Hardware principal) */}
-      <HardwareHeader />
+      {/* NAV FIJA */}
+      <TopNav />
 
       {/* PORTADA / BANNER */}
       <section className="relative w-full overflow-hidden">
@@ -98,7 +98,7 @@ function Card({ item }: { item: GalleryItem }) {
             : item.category}
         </p>
 
-        {/* Tags solo para fanart */}
+        {/* Tags solo para fanart (opcional) */}
         {isFanart && item.tags?.length ? (
           <div className="mt-2 flex flex-wrap gap-1">
             {item.tags.map((t) => (
@@ -107,26 +107,15 @@ function Card({ item }: { item: GalleryItem }) {
           </div>
         ) : null}
 
-        {/* Botón */}
-        {isVideo ? (
-          <a
-            href={item.src}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-hardware mt-3"
-          >
-            Ver video
-          </a>
-        ) : (
-          <a
-            href={item.src}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-hardware mt-3"
-          >
-            Ver grande
-          </a>
-        )}
+        {/* Acción */}
+        <a
+          href={item.src}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-hardware mt-3"
+        >
+          {isVideo ? 'Ver video' : 'Ver grande'}
+        </a>
       </div>
     </article>
   );

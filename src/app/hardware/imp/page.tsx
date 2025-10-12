@@ -1,14 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import HardwareHeader from './HardwareHeader'; // 👈 usa el mismo header/drawer
+// ⚠️ Elimina useState, Link y todo lo del drawer viejo si ya no lo usas
+import TopNav from '../../components/TopNav'; 
 import './impStyles.css';
 
 export default function HardwarePage() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* 🔹 Menú lateral reutilizable */}
-      <HardwareHeader />
+      {/* NAV FIJA */}
+      <TopNav />
 
       {/* HERO */}
       <section className="relative w-full overflow-hidden">
