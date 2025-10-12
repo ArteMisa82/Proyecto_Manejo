@@ -34,11 +34,12 @@ export default async function Home() {
 
   // 🔹 Formatear datos para los componentes
   const games = gamesRaw.map((g) => ({
-    id: g.id_jue,
-    name: g.nom_jue,
-    img: g.img_jue || "/default-game.png",
-    offer: g.porc_desc_jue ? `-${g.porc_desc_jue}%` : null,
-  }));
+  id: g.id_jue,
+  name: g.nom_jue,
+  img: g.img_jue || "/default-game.png",
+  offer: g.porc_desc_jue ? `-${g.porc_desc_jue}%` : undefined, // 👈 cambia null → undefined
+}));
+
 
   const news: NewsItem[] = newsRaw.map((n) => ({
     id: n.id_not,
@@ -71,8 +72,7 @@ export default async function Home() {
       </div>
       /*
       {/* Juegos + Franquicias */}
-      {//<JuegosFranquicias games={games} />}
-}
+      {<JuegosFranquicias games={games} />}
       {/* Carrusel Hardware */}
       <HardwareCarousel />
 
