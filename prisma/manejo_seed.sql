@@ -352,7 +352,7 @@ COPY public.marcas (id_mar, nom_mar, des_mar) FROM stdin;
 1	Nintendo	Fabricante japonés de consolas y videojuegos.
 2	Sony	Fabricante de consolas y hardware.
 3	Microsoft	Fabricante de consolas y hardware.
-4	Nintendo	Fabricante de consolas y videojuegos.
+4	SEGA	Fabricante japonés de videojuegos y consolas.
 \.
 
 
