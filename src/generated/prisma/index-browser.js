@@ -164,9 +164,9 @@ exports.Prisma.MarcasScalarFieldEnum = {
 exports.Prisma.NoticiasScalarFieldEnum = {
   id_not: 'id_not',
   tit_not: 'tit_not',
-  fec_not: 'fec_not',
   res_not: 'res_not',
   img_not: 'img_not',
+  fec_not: 'fec_not',
   url_not: 'url_not'
 };
 

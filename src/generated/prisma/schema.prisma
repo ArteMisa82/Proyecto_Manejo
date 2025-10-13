@@ -57,9 +57,9 @@ model marcas {
 
 model noticias {
   id_not  Int      @id @default(autoincrement())
-  tit_not String   @db.VarChar(100)
-  fec_not DateTime @default(dbgenerated("CURRENT_DATE")) @db.Date
+  tit_not String   @db.VarChar(255)
   res_not String?  @db.VarChar(255)
   img_not String?  @db.VarChar(255)
+  fec_not DateTime @default(now())
   url_not String?  @db.VarChar(255)
 }
