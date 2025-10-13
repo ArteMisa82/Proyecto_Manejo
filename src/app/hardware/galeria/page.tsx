@@ -1,133 +1,206 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import TopNav from '../../components/TopNav';
 import { galleryItems, type GalleryItem } from './data/gallery';
-import HardwareHeader from '../imp/HardwareHeader'; // 👈 menú reutilizable
 import '../imp/impStyles.css';
 import './galleryStyles.css';
+import { useRef } from 'react';
 
-type Filter = 'Todos' | 'Consolas' | 'Accesorios' | 'Videos' | 'Museo Digital';
+const ORDER: Array<GalleryItem['category']> = [
+  'Accesorios',
+  'Consolas',
+  'Museo Digital',
+  'Videos', // los videos van abajo y en vertical
+];
 
-export default function GaleriaPage() {
-  const [filter, setFilter] = useState<Filter>('Todos');
+/** Convierte links de YouTube (watch o youtu.be) a /embed/... */
+function toEmbedUrl(url: string): string {
+  try {
+    const u = new URL(url);
+    if (u.hostname.includes('youtu.be')) {
+      const id = u.pathname.replace('/', '');
+      return `https://www.youtube.com/embed/${id}`;
+    }
+    if (u.hostname.includes('youtube.com')) {
+      const id = u.searchParams.get('v');
+      if (id) return `https://www.youtube.com/embed/${id}`;
+    }
+    return url;
+  } catch {
+    return url;
+  }
+}
 
-  // Oculta elementos no aprobados (si no pones approved, se muestra)
-  const base = galleryItems.filter((i) => i.approved !== false);
-  const filtered = filter === 'Todos' ? base : base.filter((i) => i.category === filter);
+/** ---- Carrusel básico con scroll snapping ---- */
+function Carousel({
+  title,
+  items,
+}: {
+  title: string;
+  items: GalleryItem[];
+}) {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const scrollBy = (dir: 'prev' | 'next') => {
+    const el = trackRef.current;
+    if (!el) return;
+    const delta = dir === 'next' ? el.clientWidth * 0.9 : -el.clientWidth * 0.9;
+    el.scrollBy({ left: delta, behavior: 'smooth' });
+  };
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* 🔹 Menú lateral (mismo de Hardware principal) */}
-      <HardwareHeader />
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white/90">
+          {title}
+        </h2>
 
-      {/* PORTADA / BANNER */}
-      <section className="relative w-full overflow-hidden">
-        <div className="relative w-full">
-          <Image
-            src="/imghardware/portada.jpg"
-            alt="Banner galería"
-            width={1720}
-            height={1000}
-            priority
-            className="w-full h-[50vh] md:h-[60vh] object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-black/40" />
+        <div className="hidden md:flex gap-2">
+          <button className="carousel-btn" onClick={() => scrollBy('prev')}>‹</button>
+          <button className="carousel-btn" onClick={() => scrollBy('next')}>›</button>
         </div>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center px-6">
-            <h1 className="text-4xl md:text-5xl font-extrabold">Galería</h1>
-            <p className="mt-3 text-white/80">
-              Fotos y videos de consolas, accesorios, comparativas y museo digital.
-            </p>
-            <a href="#grid" className="btn-hardware mt-6">Ver todo</a>
-          </div>
-        </div>
-      </section>
+      </div>
 
-      {/* FILTROS */}
-      <section className="mx-auto max-w-7xl px-4 py-8">
-        <div className="flex gap-2 flex-wrap">
-          {(['Todos', 'Consolas', 'Accesorios', 'Videos', 'Museo Digital'] as Filter[]).map((f) => (
-            <button
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`chip ${filter === f ? 'chip--active' : ''}`}
+      <div className="relative">
+        <div
+          ref={trackRef}
+          className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 
+                     [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {items.map((item) => (
+            <figure
+              key={item.id}
+              className="snap-center shrink-0 w-[82vw] sm:w-[360px] lg:w-[380px]
+                         rounded-xl overflow-hidden ring-1 ring-white/10
+                         hover:ring-white/20 transition duration-300 bg-black/30"
+              title={item.title}
             >
-              {f}
-            </button>
+              <div className="relative aspect-[16/10]">
+                <Image
+                  src={item.src}
+                  alt={item.alt ?? item.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 82vw, 360px"
+                />
+              </div>
+              {/* Pie de foto opcional: */}
+              <figcaption className="px-3 py-2 text-sm text-white/80 line-clamp-2">
+                {item.title}
+              </figcaption>
+            </figure>
           ))}
         </div>
-      </section>
 
-      {/* GRID */}
-      <section id="grid" className="mx-auto max-w-7xl px-4 pb-12">
-        <div className="hardware-grid">
-          {filtered.map((item) => (
-            <Card key={item.id} item={item} />
-          ))}
+        {/* Controles en móviles (flotan sobre el carrusel) */}
+        <div className="md:hidden absolute inset-y-0 left-0 right-0 flex items-center justify-between px-1 pointer-events-none">
+          <button
+            onClick={() => scrollBy('prev')}
+            className="carousel-btn pointer-events-auto"
+            aria-label="Anterior"
+          >
+            ‹
+          </button>
+          <button
+            onClick={() => scrollBy('next')}
+            className="carousel-btn pointer-events-auto"
+            aria-label="Siguiente"
+          >
+            ›
+          </button>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
 
-function Card({ item }: { item: GalleryItem }) {
-  const isVideo = item.type === 'video';
-  const isFanart = item.type === 'fanart';
+export default function GaleriaPage() {
+  // Oculta elementos no aprobados (si approved === false no se muestra)
+  const base = galleryItems.filter((i) => i.approved !== false);
+
+  // Separamos por tipo para el layout:
+  const accesorios = base.filter((i) => i.category === 'Accesorios' && i.type !== 'video');
+  const consolas = base.filter((i) => i.category === 'Consolas' && i.type !== 'video');
+  const museo    = base.filter((i) => i.category === 'Museo Digital' && i.type !== 'video');
+  const videos   = base.filter((i) => i.type === 'video'); // todos los videos juntos al final
 
   return (
-    <article className="card-hardware">
-      <div className="relative h-48 overflow-hidden">
-        <Image
-          src={item.thumb ?? item.src}
-          alt={item.alt ?? item.title}
-          fill
-          className="object-cover"
-        />
-        {/* Distintivos */}
-        {isVideo && <span className="video-badge">▶</span>}
-        {isFanart && <span className="video-badge">★</span>}
-      </div>
+    <div className="min-h-screen bg-black text-white">
+      {/* NAV FIJA */}
+      <TopNav />
 
-      <div className="card-content">
-        <h4 className="font-semibold">{item.title}</h4>
-        <p className="text-xs text-white/60 mt-1">
-          {isFanart
-            ? `Museo Digital${item.author ? ` • ${item.author}` : ''}`
-            : item.category}
-        </p>
+      {/* PORTADA */}
+      <section className="relative w-full overflow-hidden">
+        <div className="relative w-full h-[55vh] md:h-[75vh] overflow-hidden">
+          <Image
+            src="/imghardware/buena.jpg"
+            alt="Banner galería"
+            width={1720}
+            height={1000}
+            priority
+            className="object-cover object-center w-full h-full"
+    />
+  </div>
 
-        {/* Tags solo para fanart */}
-        {isFanart && item.tags?.length ? (
-          <div className="mt-2 flex flex-wrap gap-1">
-            {item.tags.map((t) => (
-              <span key={t} className="chip">{t}</span>
-            ))}
+  <div className="absolute inset-0 bg-black/35 md:bg-black/30" />
+  <div className="absolute inset-0 flex items-center justify-center">
+    {/* tu texto o botones */}
+  </div>
+
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center px-6">
+            <h1 className="text-4xl md:text-5xl font-extrabold">Galería</h1>
+            <p className="mt-3 text-white/80">
+              Fotos, videos y piezas de nuestro museo digital.
+            </p>
+            <a href="#contenido" className="btn-hardware mt-6">
+              Ver contenido
+            </a>
           </div>
-        ) : null}
+        </div>
+      </section>
 
-        {/* Botón */}
-        {isVideo ? (
-          <a
-            href={item.src}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-hardware mt-3"
-          >
-            Ver video
-          </a>
-        ) : (
-          <a
-            href={item.src}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-hardware mt-3"
-          >
-            Ver grande
-          </a>
+      {/* CONTENIDO: carruseles + videos en columna */}
+      <section id="contenido" className="mx-auto max-w-7xl px-4 py-14 space-y-16 md:space-y-20">
+        {accesorios.length > 0 && (
+          <Carousel title="Accesorios" items={accesorios} />
         )}
-      </div>
-    </article>
+
+        {consolas.length > 0 && (
+          <Carousel title="Consolas" items={consolas} />
+        )}
+
+        {museo.length > 0 && (
+          <Carousel title="Museo Digital" items={museo} />
+        )}
+
+        {/* VIDEOS: uno debajo de otro, grandes y centrados */}
+        {videos.length > 0 && (
+          <div className="space-y-6">
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white/90">
+              Videos
+            </h2>
+
+            <div className="space-y-10">
+              {videos.map((v) => (
+                <article key={v.id} className="mx-auto w-full max-w-5xl">
+                  <div className="relative w-full aspect-video rounded-xl overflow-hidden ring-1 ring-white/10 bg-black/40">
+                    <iframe
+                      src={toEmbedUrl(v.src)}
+                      title={v.title}
+                      className="absolute inset-0 h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  </div>
+                  <p className="mt-3 text-sm md:text-base text-white/80">{v.title}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+    </div>
   );
 }

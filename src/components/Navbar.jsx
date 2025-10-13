@@ -6,8 +6,8 @@ export default function navbar(){
                 <div className="text-white text-lg font-bold">Juegos App</div>
                 <div>
                     <a href="/home" className="text-gray-300 hover:text-white mx-2">Home</a>
-                    <a href="/juegos" className="text-gray-300 hover:text-white mx-2">Juegos</a>
-                    <a href="/noticias" className="text-gray-300 hover:text-white mx-2">Hardware</a>
+                    <a href="/juegos/impl" className="text-gray-300 hover:text-white mx-2">Juegos</a>
+                    <a href="/hardware/imp" className="text-gray-300 hover:text-white mx-2">Hardware</a>
                 </div>
             </div>
         </nav>    
