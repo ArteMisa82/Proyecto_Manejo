@@ -66,9 +66,9 @@ npm run dev
 
 ![Home]()
 
-![Juegos](https://imgur.com/a/vABfDTq)
+![Juegos](https://imgur.com/a/vABfDTq.png)
 
-![Hardware](https://imgur.com/a/RMjvoVJ)
+![Hardware](https://imgur.com/a/RMjvoVJ.png)
 
 ## 📌 Requisitos del Sistema
 
