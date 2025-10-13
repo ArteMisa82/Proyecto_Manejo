@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 interface Game {
   id: number;
   name: string;
   img: string;
-  offer?: string; // texto o porcentaje de oferta (opcional)
+  offer?: string;
 }
 
 interface JuegosFranquiciasProps {
@@ -29,8 +30,9 @@ export default function JuegosFranquicias({ games }: JuegosFranquiciasProps) {
         }}
       >
         {games.map((game) => (
-          <div
+          <Link
             key={game.id}
+            href={`/juegos/impl`} // 👈 aquí defines a dónde redirige al hacer clic
             className="relative group cursor-pointer rounded-lg overflow-hidden bg-gray-800"
             style={{
               gridArea:
@@ -52,7 +54,7 @@ export default function JuegosFranquicias({ games }: JuegosFranquiciasProps) {
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
 
-            {/* Etiqueta de oferta (si aplica) */}
+            {/* Etiqueta de oferta */}
             {game.offer && (
               <span className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-md">
                 {game.offer}
@@ -63,7 +65,7 @@ export default function JuegosFranquicias({ games }: JuegosFranquiciasProps) {
             <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
               <p className="text-white font-semibold">{game.name}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
