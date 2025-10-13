@@ -64,9 +64,11 @@ npm run dev
 
 ## 📸 Capturas del Proyecto
 
-![Juegos](juegos.jpg)
+![Home]()
 
-![Hardware](hardware.jpg)
+![Juegos](https://imgur.com/a/vABfDTq)
+
+![Hardware](https://imgur.com/a/RMjvoVJ)
 
 ## 📌 Requisitos del Sistema
 
