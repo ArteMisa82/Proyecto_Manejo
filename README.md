@@ -32,7 +32,7 @@
 
 1. Clonar el repositorio
 ```bash 
-git clone https://github.com/tu-usuario/gamehub.git
+git clone https://github.com/ArteMisa82/Proyecto_Manejo.git
 cd gamehub
 ```
 
@@ -64,6 +64,9 @@ npm run dev
 
 ## 📸 Capturas del Proyecto
 
+![Juegos](juegos.jpg)
+
+![Hardware](hardware.jpg)
 
 ## 📌 Requisitos del Sistema
 

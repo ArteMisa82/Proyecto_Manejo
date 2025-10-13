@@ -161,15 +161,6 @@ exports.Prisma.MarcasScalarFieldEnum = {
   des_mar: 'des_mar'
 };
 
-exports.Prisma.NoticiasScalarFieldEnum = {
-  id_not: 'id_not',
-  tit_not: 'tit_not',
-  fec_not: 'fec_not',
-  res_not: 'res_not',
-  img_not: 'img_not',
-  url_not: 'url_not'
-};
-
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -191,8 +182,7 @@ exports.Prisma.ModelName = {
   franquicias: 'franquicias',
   hardware: 'hardware',
   juegos: 'juegos',
-  marcas: 'marcas',
-  noticias: 'noticias'
+  marcas: 'marcas'
 };
 
 /**
