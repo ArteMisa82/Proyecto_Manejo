@@ -163,8 +163,7 @@ exports.Prisma.ModelName = {
   franquicias: 'franquicias',
   hardware: 'hardware',
   juegos: 'juegos',
-  marcas: 'marcas',
-  noticias: 'noticias'
+  marcas: 'marcas'
 };
 /**
  * Create the Client
@@ -177,7 +176,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\User\\Documents\\Joshua Universidad\\Cuarto\\MAnejo\\segunda Matricula\\ProyectoPrimerParcial\\PRoyectoPrimerParcial\\Proyecto_Manejo\\src\\generated\\prisma",
+      "value": "C:\\Users\\anave\\Desktop\\ProyectoManejo\\juegos-app\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -191,12 +190,12 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\User\\Documents\\Joshua Universidad\\Cuarto\\MAnejo\\segunda Matricula\\ProyectoPrimerParcial\\PRoyectoPrimerParcial\\Proyecto_Manejo\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\anave\\Desktop\\ProyectoManejo\\juegos-app\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
     "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "schemaEnvPath": "../../../prisma/.env"
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.17.1",
