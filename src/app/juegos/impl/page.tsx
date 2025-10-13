@@ -60,8 +60,8 @@ const JuegosPage = () => {
 
         // Separar por franquicia
         setFranquiciaSEGA(data.filter(j => j.franquicias.nom_fra.toLowerCase() === 'sega'));
-        setFranquiciaNintendo(data.filter(j => j.franquicias.nom_fra.toLowerCase() === 'mario' || j.franquicias.nom_fra.toLowerCase() === 'nintendo'));
-        setFranquiciaPS(data.filter(j => j.franquicias.nom_fra.toLowerCase() === 'playstation' || j.franquicias.nom_fra.toLowerCase() === 'final fantasy'));
+        setFranquiciaNintendo(data.filter(j => ['mario', 'nintendo'].includes(j.franquicias.nom_fra.toLowerCase())));
+        setFranquiciaPS(data.filter(j => ['playstation', 'final fantasy'].includes(j.franquicias.nom_fra.toLowerCase())));
       } catch (error) {
         console.error('Error al obtener juegos:', error);
       } finally {
@@ -118,7 +118,17 @@ const JuegosPage = () => {
 
   const juegoActual = juegos[indiceActual];
 
-  const renderFranquicia = (franJuegos: Juego[], index: number, setIndex: (i: number) => void, editing: boolean, setEditing: any, tempCats: string[], setTempCats: any, logo: string, trailer: string) => {
+  const renderFranquicia = (
+    franJuegos: Juego[],
+    index: number,
+    setIndex: (i: number) => void,
+    editing: boolean,
+    setEditing: any,
+    tempCats: string[],
+    setTempCats: any,
+    logo: string,
+    trailer: string
+  ) => {
     if (franJuegos.length === 0) return null;
     const juego = franJuegos[index];
 
@@ -177,7 +187,11 @@ const JuegosPage = () => {
                             <div className="cat-edit-row" key={ci}>
                               <input
                                 value={cat}
-                                onChange={(e) => setTempCats(prev => { const copy = [...prev]; copy[ci] = e.target.value; return copy; })}
+                                onChange={(e) => setTempCats(prev => {
+                                  const copy = [...prev];
+                                  copy[ci] = e.target.value;
+                                  return copy;
+                                })}
                               />
                               <button className="cat-remove" onClick={() => setTempCats(prev => prev.filter((_, ix) => ix !== ci))}>✖</button>
                             </div>
@@ -185,7 +199,7 @@ const JuegosPage = () => {
                         </div>
                         <div className="cat-edit-actions">
                           <button className="cat-add" onClick={() => setTempCats(prev => [...prev, ''])}>+ Añadir</button>
-                          <button className="cat-save" onClick={() => { /* Aquí podrías guardar cambios */ setEditing(false); }}>Guardar</button>
+                          <button className="cat-save" onClick={() => setEditing(false)}>Guardar</button>
                           <button className="cat-cancel" onClick={() => setEditing(false)}>Cancelar</button>
                         </div>
                       </div>
@@ -286,13 +300,9 @@ const JuegosPage = () => {
         </div>
       </section>
 
-      {/* Franquicias SEGA */}
+      {/* Franquicias */}
       {renderFranquicia(franquiciaSEGA, franIndex, setFranIndex, editingCats, setEditingCats, tempCats, setTempCats, '/imgs/SEGAA.png', 'https://www.youtube.com/embed/3_xAuG3JfIg')}
-      
-      {/* Franquicias NINTENDO */}
       {renderFranquicia(franquiciaNintendo, nintendoIndex, setNintendoIndex, nintendoEditing, setNintendoEditing, nintendoTempCats, setNintendoTempCats, '/imgs/nintendo.png', 'https://www.youtube.com/embed/uHGShqcAHlQ')}
-
-      {/* Franquicias PLAYSTATION */}
       {renderFranquicia(franquiciaPS, psIndex, setPsIndex, psEditing, setPsEditing, psTempCats, setPsTempCats, '/imgs/psss.png', 'https://www.youtube.com/embed/vtFhDrMIZjE')}
 
       {/* Footer */}
