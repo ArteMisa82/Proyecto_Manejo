@@ -3580,6 +3580,7 @@ export namespace Prisma {
     des_har: string | null
     img_har: string | null
     url_har: string | null
+    web_url_har: string | null
     specs_har: string | null
     id_mar: number | null
   }
@@ -3592,6 +3593,7 @@ export namespace Prisma {
     des_har: string | null
     img_har: string | null
     url_har: string | null
+    web_url_har: string | null
     specs_har: string | null
     id_mar: number | null
   }
@@ -3604,6 +3606,7 @@ export namespace Prisma {
     des_har: number
     img_har: number
     url_har: number
+    web_url_har: number
     specs_har: number
     id_mar: number
     _all: number
@@ -3628,6 +3631,7 @@ export namespace Prisma {
     des_har?: true
     img_har?: true
     url_har?: true
+    web_url_har?: true
     specs_har?: true
     id_mar?: true
   }
@@ -3640,6 +3644,7 @@ export namespace Prisma {
     des_har?: true
     img_har?: true
     url_har?: true
+    web_url_har?: true
     specs_har?: true
     id_mar?: true
   }
@@ -3652,6 +3657,7 @@ export namespace Prisma {
     des_har?: true
     img_har?: true
     url_har?: true
+    web_url_har?: true
     specs_har?: true
     id_mar?: true
     _all?: true
@@ -3751,6 +3757,7 @@ export namespace Prisma {
     des_har: string | null
     img_har: string | null
     url_har: string | null
+    web_url_har: string | null
     specs_har: string | null
     id_mar: number | null
     _count: HardwareCountAggregateOutputType | null
@@ -3782,6 +3789,7 @@ export namespace Prisma {
     des_har?: boolean
     img_har?: boolean
     url_har?: boolean
+    web_url_har?: boolean
     specs_har?: boolean
     id_mar?: boolean
     marcas?: boolean | hardware$marcasArgs<ExtArgs>
@@ -3795,6 +3803,7 @@ export namespace Prisma {
     des_har?: boolean
     img_har?: boolean
     url_har?: boolean
+    web_url_har?: boolean
     specs_har?: boolean
     id_mar?: boolean
     marcas?: boolean | hardware$marcasArgs<ExtArgs>
@@ -3808,6 +3817,7 @@ export namespace Prisma {
     des_har?: boolean
     img_har?: boolean
     url_har?: boolean
+    web_url_har?: boolean
     specs_har?: boolean
     id_mar?: boolean
     marcas?: boolean | hardware$marcasArgs<ExtArgs>
@@ -3821,11 +3831,12 @@ export namespace Prisma {
     des_har?: boolean
     img_har?: boolean
     url_har?: boolean
+    web_url_har?: boolean
     specs_har?: boolean
     id_mar?: boolean
   }
 
-  export type hardwareOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_har" | "cod_har" | "nom_har" | "tipo_har" | "des_har" | "img_har" | "url_har" | "specs_har" | "id_mar", ExtArgs["result"]["hardware"]>
+  export type hardwareOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_har" | "cod_har" | "nom_har" | "tipo_har" | "des_har" | "img_har" | "url_har" | "web_url_har" | "specs_har" | "id_mar", ExtArgs["result"]["hardware"]>
   export type hardwareInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     marcas?: boolean | hardware$marcasArgs<ExtArgs>
   }
@@ -3849,6 +3860,7 @@ export namespace Prisma {
       des_har: string | null
       img_har: string | null
       url_har: string | null
+      web_url_har: string | null
       specs_har: string | null
       id_mar: number | null
     }, ExtArgs["result"]["hardware"]>
@@ -4282,6 +4294,7 @@ export namespace Prisma {
     readonly des_har: FieldRef<"hardware", 'String'>
     readonly img_har: FieldRef<"hardware", 'String'>
     readonly url_har: FieldRef<"hardware", 'String'>
+    readonly web_url_har: FieldRef<"hardware", 'String'>
     readonly specs_har: FieldRef<"hardware", 'String'>
     readonly id_mar: FieldRef<"hardware", 'Int'>
   }
@@ -8086,6 +8099,7 @@ export namespace Prisma {
     des_har: 'des_har',
     img_har: 'img_har',
     url_har: 'url_har',
+    web_url_har: 'web_url_har',
     specs_har: 'specs_har',
     id_mar: 'id_mar'
   };
@@ -8331,6 +8345,7 @@ export namespace Prisma {
     des_har?: StringNullableFilter<"hardware"> | string | null
     img_har?: StringNullableFilter<"hardware"> | string | null
     url_har?: StringNullableFilter<"hardware"> | string | null
+    web_url_har?: StringNullableFilter<"hardware"> | string | null
     specs_har?: StringNullableFilter<"hardware"> | string | null
     id_mar?: IntNullableFilter<"hardware"> | number | null
     marcas?: XOR<MarcasNullableScalarRelationFilter, marcasWhereInput> | null
@@ -8344,6 +8359,7 @@ export namespace Prisma {
     des_har?: SortOrderInput | SortOrder
     img_har?: SortOrderInput | SortOrder
     url_har?: SortOrderInput | SortOrder
+    web_url_har?: SortOrderInput | SortOrder
     specs_har?: SortOrderInput | SortOrder
     id_mar?: SortOrderInput | SortOrder
     marcas?: marcasOrderByWithRelationInput
@@ -8360,6 +8376,7 @@ export namespace Prisma {
     des_har?: StringNullableFilter<"hardware"> | string | null
     img_har?: StringNullableFilter<"hardware"> | string | null
     url_har?: StringNullableFilter<"hardware"> | string | null
+    web_url_har?: StringNullableFilter<"hardware"> | string | null
     specs_har?: StringNullableFilter<"hardware"> | string | null
     id_mar?: IntNullableFilter<"hardware"> | number | null
     marcas?: XOR<MarcasNullableScalarRelationFilter, marcasWhereInput> | null
@@ -8373,6 +8390,7 @@ export namespace Prisma {
     des_har?: SortOrderInput | SortOrder
     img_har?: SortOrderInput | SortOrder
     url_har?: SortOrderInput | SortOrder
+    web_url_har?: SortOrderInput | SortOrder
     specs_har?: SortOrderInput | SortOrder
     id_mar?: SortOrderInput | SortOrder
     _count?: hardwareCountOrderByAggregateInput
@@ -8393,6 +8411,7 @@ export namespace Prisma {
     des_har?: StringNullableWithAggregatesFilter<"hardware"> | string | null
     img_har?: StringNullableWithAggregatesFilter<"hardware"> | string | null
     url_har?: StringNullableWithAggregatesFilter<"hardware"> | string | null
+    web_url_har?: StringNullableWithAggregatesFilter<"hardware"> | string | null
     specs_har?: StringNullableWithAggregatesFilter<"hardware"> | string | null
     id_mar?: IntNullableWithAggregatesFilter<"hardware"> | number | null
   }
@@ -8669,6 +8688,7 @@ export namespace Prisma {
     des_har?: string | null
     img_har?: string | null
     url_har?: string | null
+    web_url_har?: string | null
     specs_har?: string | null
     marcas?: marcasCreateNestedOneWithoutHardwareInput
   }
@@ -8681,6 +8701,7 @@ export namespace Prisma {
     des_har?: string | null
     img_har?: string | null
     url_har?: string | null
+    web_url_har?: string | null
     specs_har?: string | null
     id_mar?: number | null
   }
@@ -8692,6 +8713,7 @@ export namespace Prisma {
     des_har?: NullableStringFieldUpdateOperationsInput | string | null
     img_har?: NullableStringFieldUpdateOperationsInput | string | null
     url_har?: NullableStringFieldUpdateOperationsInput | string | null
+    web_url_har?: NullableStringFieldUpdateOperationsInput | string | null
     specs_har?: NullableStringFieldUpdateOperationsInput | string | null
     marcas?: marcasUpdateOneWithoutHardwareNestedInput
   }
@@ -8704,6 +8726,7 @@ export namespace Prisma {
     des_har?: NullableStringFieldUpdateOperationsInput | string | null
     img_har?: NullableStringFieldUpdateOperationsInput | string | null
     url_har?: NullableStringFieldUpdateOperationsInput | string | null
+    web_url_har?: NullableStringFieldUpdateOperationsInput | string | null
     specs_har?: NullableStringFieldUpdateOperationsInput | string | null
     id_mar?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -8716,6 +8739,7 @@ export namespace Prisma {
     des_har?: string | null
     img_har?: string | null
     url_har?: string | null
+    web_url_har?: string | null
     specs_har?: string | null
     id_mar?: number | null
   }
@@ -8727,6 +8751,7 @@ export namespace Prisma {
     des_har?: NullableStringFieldUpdateOperationsInput | string | null
     img_har?: NullableStringFieldUpdateOperationsInput | string | null
     url_har?: NullableStringFieldUpdateOperationsInput | string | null
+    web_url_har?: NullableStringFieldUpdateOperationsInput | string | null
     specs_har?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -8738,6 +8763,7 @@ export namespace Prisma {
     des_har?: NullableStringFieldUpdateOperationsInput | string | null
     img_har?: NullableStringFieldUpdateOperationsInput | string | null
     url_har?: NullableStringFieldUpdateOperationsInput | string | null
+    web_url_har?: NullableStringFieldUpdateOperationsInput | string | null
     specs_har?: NullableStringFieldUpdateOperationsInput | string | null
     id_mar?: NullableIntFieldUpdateOperationsInput | number | null
   }
@@ -9105,6 +9131,7 @@ export namespace Prisma {
     des_har?: SortOrder
     img_har?: SortOrder
     url_har?: SortOrder
+    web_url_har?: SortOrder
     specs_har?: SortOrder
     id_mar?: SortOrder
   }
@@ -9122,6 +9149,7 @@ export namespace Prisma {
     des_har?: SortOrder
     img_har?: SortOrder
     url_har?: SortOrder
+    web_url_har?: SortOrder
     specs_har?: SortOrder
     id_mar?: SortOrder
   }
@@ -9134,6 +9162,7 @@ export namespace Prisma {
     des_har?: SortOrder
     img_har?: SortOrder
     url_har?: SortOrder
+    web_url_har?: SortOrder
     specs_har?: SortOrder
     id_mar?: SortOrder
   }
@@ -9972,6 +10001,7 @@ export namespace Prisma {
     des_har?: string | null
     img_har?: string | null
     url_har?: string | null
+    web_url_har?: string | null
     specs_har?: string | null
   }
 
@@ -9983,6 +10013,7 @@ export namespace Prisma {
     des_har?: string | null
     img_har?: string | null
     url_har?: string | null
+    web_url_har?: string | null
     specs_har?: string | null
   }
 
@@ -10023,6 +10054,7 @@ export namespace Prisma {
     des_har?: StringNullableFilter<"hardware"> | string | null
     img_har?: StringNullableFilter<"hardware"> | string | null
     url_har?: StringNullableFilter<"hardware"> | string | null
+    web_url_har?: StringNullableFilter<"hardware"> | string | null
     specs_har?: StringNullableFilter<"hardware"> | string | null
     id_mar?: IntNullableFilter<"hardware"> | number | null
   }
@@ -10121,6 +10153,7 @@ export namespace Prisma {
     des_har?: string | null
     img_har?: string | null
     url_har?: string | null
+    web_url_har?: string | null
     specs_har?: string | null
   }
 
@@ -10131,6 +10164,7 @@ export namespace Prisma {
     des_har?: NullableStringFieldUpdateOperationsInput | string | null
     img_har?: NullableStringFieldUpdateOperationsInput | string | null
     url_har?: NullableStringFieldUpdateOperationsInput | string | null
+    web_url_har?: NullableStringFieldUpdateOperationsInput | string | null
     specs_har?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -10142,6 +10176,7 @@ export namespace Prisma {
     des_har?: NullableStringFieldUpdateOperationsInput | string | null
     img_har?: NullableStringFieldUpdateOperationsInput | string | null
     url_har?: NullableStringFieldUpdateOperationsInput | string | null
+    web_url_har?: NullableStringFieldUpdateOperationsInput | string | null
     specs_har?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -10153,6 +10188,7 @@ export namespace Prisma {
     des_har?: NullableStringFieldUpdateOperationsInput | string | null
     img_har?: NullableStringFieldUpdateOperationsInput | string | null
     url_har?: NullableStringFieldUpdateOperationsInput | string | null
+    web_url_har?: NullableStringFieldUpdateOperationsInput | string | null
     specs_har?: NullableStringFieldUpdateOperationsInput | string | null
   }
 

@@ -4,7 +4,6 @@
 import Image from 'next/image';
 import TopNav from '../../components/TopNav';
 
-// La importación de datos locales (galleryItems) y tipos (GalleryItem) fue ELIMINADA.
 import '../imp/impStyles.css';
 import './galleryStyles.css';
 import { useRef } from 'react';
@@ -20,19 +19,17 @@ type HardwareItem = {
     url_har: string | null; // Usaremos esto para el video
 };
 
-// 💡 2. Tipo de dato para uso interno (lo que solía ser GalleryItem)
+// 💡 2. Tipo de dato para uso interno
 type MappedGalleryItem = {
     id: number;
     title: string;
     src: string;
-    videoSrc: string; // Separamos la URL del video para mayor claridad
+    videoSrc: string; // URL de video de Prisma
     category: 'Accesorios' | 'Consolas' | 'Museo Digital' | 'Videos' | string;
     type: 'image' | 'video';
     alt: string;
     approved: boolean;
 };
-
-// ❌ Eliminamos const ORDER ya que dependía del tipo GalleryItem.
 
 /** Convierte links de YouTube (watch o youtu.be) a /embed/... */
 function toEmbedUrl(url: string): string {
@@ -58,7 +55,6 @@ function Carousel({
     items,
 }: {
     title: string;
-    // 💡 USAR EL NUEVO TIPO MappedGalleryItem
     items: MappedGalleryItem[]; 
 }) {
     const trackRef = useRef<HTMLDivElement>(null);
@@ -72,9 +68,8 @@ function Carousel({
 
     return (
         <div className="space-y-4">
-            {/* ... el JSX del carrusel permanece igual ... */}
              <div className="relative">
-                <div
+                 <div
                     ref={trackRef}
                     className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 
                              [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
@@ -102,13 +97,12 @@ function Carousel({
                         </figure>
                     ))}
                 </div>
-                {/* ... Controles en móviles ... */}
             </div>
         </div>
     );
 }
 
-// 💡 3. MODIFICAR EL COMPONENTE PRINCIPAL PARA ACEPTAR LA PROP serverItems
+// 💡 3. MODIFICACIÓN DEL COMPONENTE PRINCIPAL CON LÓGICA DE ORDENAMIENTO
 export default function GaleriaPage({ serverItems }: { serverItems: HardwareItem[] }) {
     
     // --- LÓGICA DE MAPEO DE DATOS (Prisma -> UI) ---
@@ -124,15 +118,37 @@ export default function GaleriaPage({ serverItems }: { serverItems: HardwareItem
         approved: true,
     }));
 
-    // Oculta elementos no aprobados (si approved === false no se muestra)
-    // 💡 USAR mappedItems en lugar de galleryItems
+    // Oculta elementos no aprobados
     const base = mappedItems.filter((i) => i.approved !== false); 
+    
+    // --- FUNCIÓN DE ORDENAMIENTO PERSONALIZADO ---
+    const customSort = (a: MappedGalleryItem, b: MappedGalleryItem): number => {
+        // Mapeo de prioridad (menor número = mayor prioridad/primero en la lista)
+        const orderMap: { [key: string]: number } = {
+            'PlayStation 5': 1,
+            'Xbox Series X': 2,
+            'Xbox Series S': 3,
+            'Nintendo Switch 2': 4,
+            'Nintendo Switch': 5,
+            'Nintendo Switch OLED': 6,
+            'Nintendo 3DS': 7,
+        };
 
-    // Separamos por tipo para el layout:
-    const accesorios = base.filter((i) => i.category === 'Accesorios' && i.type !== 'video');
-    const consolas = base.filter((i) => i.category === 'Consolas' && i.type !== 'video');
-    const museo    = base.filter((i) => i.category === 'Museo Digital' && i.type !== 'video');
-    const videos   = base.filter((i) => i.type === 'video'); 
+        const orderA = orderMap[a.title] || 999;
+        const orderB = orderMap[b.title] || 999;
+        
+        return orderA - orderB;
+    };
+    
+    // 💡 APLICAMOS EL ORDENAMIENTO AL ARREGLO BASE
+    // Usamos slice() para crear una copia y evitar mutar el array original (aunque base ya es nuevo)
+    const orderedBase = base.slice().sort(customSort); 
+
+    // Separamos por tipo para el layout, usando el arreglo ordenado:
+    const accesorios = orderedBase.filter((i) => i.category === 'Accesorios' && i.type !== 'video');
+    const consolas = orderedBase.filter((i) => i.category === 'Consolas' && i.type !== 'video');
+    const museo    = orderedBase.filter((i) => i.category === 'Museo Digital' && i.type !== 'video');
+    const videos   = orderedBase.filter((i) => i.type === 'video'); 
 
     return (
         <div className="min-h-screen bg-black text-white">
@@ -164,7 +180,7 @@ export default function GaleriaPage({ serverItems }: { serverItems: HardwareItem
                                 <article key={v.id} className="mx-auto w-full max-w-5xl">
                                     <div className="relative w-full aspect-video rounded-xl overflow-hidden ring-1 ring-white/10 bg-black/40">
                                         <iframe
-                                            // 💡 USAR v.videoSrc (que obtuvimos de url_har)
+                                            // 💡 APLICACIÓN DE LA FUNCIÓN DE TRANSFORMACIÓN
                                             src={toEmbedUrl(v.videoSrc)} 
                                             title={v.title}
                                             className="absolute inset-0 h-full w-full"

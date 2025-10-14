@@ -139,6 +139,7 @@ exports.Prisma.HardwareScalarFieldEnum = {
   des_har: 'des_har',
   img_har: 'img_har',
   url_har: 'url_har',
+  web_url_har: 'web_url_har',
   specs_har: 'specs_har',
   id_mar: 'id_mar'
 };

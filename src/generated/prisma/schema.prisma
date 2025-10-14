@@ -22,16 +22,17 @@ model franquicias {
 }
 
 model hardware {
-  id_har    Int     @id @default(autoincrement())
-  cod_har   String  @unique @db.VarChar(50)
-  nom_har   String  @db.VarChar(100)
-  tipo_har  String? @db.VarChar(50)
-  des_har   String? @db.VarChar(255)
-  img_har   String? @db.VarChar(255)
-  url_har   String? @db.VarChar(255)
-  specs_har String? @db.VarChar(255)
-  id_mar    Int?
-  marcas    marcas? @relation(fields: [id_mar], references: [id_mar], onDelete: NoAction, onUpdate: NoAction)
+  id_har      Int     @id @default(autoincrement())
+  cod_har     String  @unique @db.VarChar(50)
+  nom_har     String  @db.VarChar(100)
+  tipo_har    String? @db.VarChar(50)
+  des_har     String? @db.VarChar(255)
+  img_har     String? @db.VarChar(255)
+  url_har     String? @db.VarChar(255)
+  web_url_har String? @map("web_url_har")
+  specs_har   String? @db.VarChar(255)
+  id_mar      Int?
+  marcas      marcas? @relation(fields: [id_mar], references: [id_mar], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model juegos {
