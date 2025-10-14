@@ -187,18 +187,18 @@ const JuegosPage = () => {
                             <div className="cat-edit-row" key={ci}>
                               <input
                                 value={cat}
-                                onChange={(e) => setTempCats(prev => {
+                                onChange={(e) => setTempCats((prev: any) => {
                                   const copy = [...prev];
                                   copy[ci] = e.target.value;
                                   return copy;
                                 })}
                               />
-                              <button className="cat-remove" onClick={() => setTempCats(prev => prev.filter((_, ix) => ix !== ci))}>✖</button>
+                              <button className="cat-remove" onClick={() => setTempCats((prev: any[]) => prev.filter((_, ix) => ix !== ci))}>✖</button>
                             </div>
                           ))}
                         </div>
                         <div className="cat-edit-actions">
-                          <button className="cat-add" onClick={() => setTempCats(prev => [...prev, ''])}>+ Añadir</button>
+                          <button className="cat-add" onClick={() => setTempCats((prev: any) => [...prev, ''])}>+ Añadir</button>
                           <button className="cat-save" onClick={() => setEditing(false)}>Guardar</button>
                           <button className="cat-cancel" onClick={() => setEditing(false)}>Cancelar</button>
                         </div>
@@ -223,7 +223,7 @@ const JuegosPage = () => {
   return (
     <div className="pagina-juegos">
       {/* Header */}
-      <header className="header-juegos">
+      {/*<header className="header-juegos">
         <div className="contenedor-header">
           <h1 className="titulo-principal">VIDEOJUEGOS</h1>
           <nav className="navegacion">
@@ -232,7 +232,7 @@ const JuegosPage = () => {
             <a href="#" className="nav-link">Ofertas</a>
           </nav>
         </div>
-      </header>
+      </header>*/}
 
       {/* Carrusel Principal */}
       <section className="ofertas-carrusel">

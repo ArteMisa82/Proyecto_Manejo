@@ -191,7 +191,8 @@ exports.Prisma.ModelName = {
   franquicias: 'franquicias',
   hardware: 'hardware',
   juegos: 'juegos',
-  marcas: 'marcas'
+  marcas: 'marcas',
+  noticias: 'noticias'
 };
 
 /**

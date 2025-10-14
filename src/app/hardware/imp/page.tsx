@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 // ⚠️ Elimina useState, Link y todo lo del drawer viejo si ya no lo usas
-import TopNav from '../../components/TopNav'; 
+//import TopNav from '../../componentes/TopNav'; 
 import './impStyles.css';
 
 export default function HardwarePage() {
@@ -10,7 +10,7 @@ export default function HardwarePage() {
     <div className="min-h-screen bg-black text-white">
       {/* 🔹 Menú lateral reutilizable */}
       {/* NAV FIJA */}
-      <TopNav />
+      {/*<TopNav />*/}
 
       {/* HERO */}
 <section className="relative w-full overflow-hidden">

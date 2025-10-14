@@ -38,6 +38,11 @@ export type juegos = $Result.DefaultSelection<Prisma.$juegosPayload>
  * 
  */
 export type marcas = $Result.DefaultSelection<Prisma.$marcasPayload>
+/**
+ * Model noticias
+ * 
+ */
+export type noticias = $Result.DefaultSelection<Prisma.$noticiasPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -206,6 +211,16 @@ export class PrismaClient<
     * ```
     */
   get marcas(): Prisma.marcasDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.noticias`: Exposes CRUD operations for the **noticias** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Noticias
+    * const noticias = await prisma.noticias.findMany()
+    * ```
+    */
+  get noticias(): Prisma.noticiasDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -650,7 +665,8 @@ export namespace Prisma {
     franquicias: 'franquicias',
     hardware: 'hardware',
     juegos: 'juegos',
-    marcas: 'marcas'
+    marcas: 'marcas',
+    noticias: 'noticias'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -669,7 +685,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "categorias" | "franquicias" | "hardware" | "juegos" | "marcas"
+      modelProps: "categorias" | "franquicias" | "hardware" | "juegos" | "marcas" | "noticias"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1043,6 +1059,80 @@ export namespace Prisma {
           }
         }
       }
+      noticias: {
+        payload: Prisma.$noticiasPayload<ExtArgs>
+        fields: Prisma.noticiasFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.noticiasFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$noticiasPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.noticiasFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$noticiasPayload>
+          }
+          findFirst: {
+            args: Prisma.noticiasFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$noticiasPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.noticiasFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$noticiasPayload>
+          }
+          findMany: {
+            args: Prisma.noticiasFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$noticiasPayload>[]
+          }
+          create: {
+            args: Prisma.noticiasCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$noticiasPayload>
+          }
+          createMany: {
+            args: Prisma.noticiasCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.noticiasCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$noticiasPayload>[]
+          }
+          delete: {
+            args: Prisma.noticiasDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$noticiasPayload>
+          }
+          update: {
+            args: Prisma.noticiasUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$noticiasPayload>
+          }
+          deleteMany: {
+            args: Prisma.noticiasDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.noticiasUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.noticiasUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$noticiasPayload>[]
+          }
+          upsert: {
+            args: Prisma.noticiasUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$noticiasPayload>
+          }
+          aggregate: {
+            args: Prisma.NoticiasAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNoticias>
+          }
+          groupBy: {
+            args: Prisma.noticiasGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NoticiasGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.noticiasCountArgs<ExtArgs>
+            result: $Utils.Optional<NoticiasCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1144,6 +1234,7 @@ export namespace Prisma {
     hardware?: hardwareOmit
     juegos?: juegosOmit
     marcas?: marcasOmit
+    noticias?: noticiasOmit
   }
 
   /* Types for Logging */
@@ -6937,27 +7028,27 @@ export namespace Prisma {
   export type NoticiasMinAggregateOutputType = {
     id_not: number | null
     tit_not: string | null
-    fec_not: Date | null
     res_not: string | null
     img_not: string | null
+    fec_not: Date | null
     url_not: string | null
   }
 
   export type NoticiasMaxAggregateOutputType = {
     id_not: number | null
     tit_not: string | null
-    fec_not: Date | null
     res_not: string | null
     img_not: string | null
+    fec_not: Date | null
     url_not: string | null
   }
 
   export type NoticiasCountAggregateOutputType = {
     id_not: number
     tit_not: number
-    fec_not: number
     res_not: number
     img_not: number
+    fec_not: number
     url_not: number
     _all: number
   }
@@ -6974,27 +7065,27 @@ export namespace Prisma {
   export type NoticiasMinAggregateInputType = {
     id_not?: true
     tit_not?: true
-    fec_not?: true
     res_not?: true
     img_not?: true
+    fec_not?: true
     url_not?: true
   }
 
   export type NoticiasMaxAggregateInputType = {
     id_not?: true
     tit_not?: true
-    fec_not?: true
     res_not?: true
     img_not?: true
+    fec_not?: true
     url_not?: true
   }
 
   export type NoticiasCountAggregateInputType = {
     id_not?: true
     tit_not?: true
-    fec_not?: true
     res_not?: true
     img_not?: true
+    fec_not?: true
     url_not?: true
     _all?: true
   }
@@ -7088,9 +7179,9 @@ export namespace Prisma {
   export type NoticiasGroupByOutputType = {
     id_not: number
     tit_not: string
-    fec_not: Date
     res_not: string | null
     img_not: string | null
+    fec_not: Date
     url_not: string | null
     _count: NoticiasCountAggregateOutputType | null
     _avg: NoticiasAvgAggregateOutputType | null
@@ -7116,40 +7207,40 @@ export namespace Prisma {
   export type noticiasSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_not?: boolean
     tit_not?: boolean
-    fec_not?: boolean
     res_not?: boolean
     img_not?: boolean
+    fec_not?: boolean
     url_not?: boolean
   }, ExtArgs["result"]["noticias"]>
 
   export type noticiasSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_not?: boolean
     tit_not?: boolean
-    fec_not?: boolean
     res_not?: boolean
     img_not?: boolean
+    fec_not?: boolean
     url_not?: boolean
   }, ExtArgs["result"]["noticias"]>
 
   export type noticiasSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id_not?: boolean
     tit_not?: boolean
-    fec_not?: boolean
     res_not?: boolean
     img_not?: boolean
+    fec_not?: boolean
     url_not?: boolean
   }, ExtArgs["result"]["noticias"]>
 
   export type noticiasSelectScalar = {
     id_not?: boolean
     tit_not?: boolean
-    fec_not?: boolean
     res_not?: boolean
     img_not?: boolean
+    fec_not?: boolean
     url_not?: boolean
   }
 
-  export type noticiasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_not" | "tit_not" | "fec_not" | "res_not" | "img_not" | "url_not", ExtArgs["result"]["noticias"]>
+  export type noticiasOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_not" | "tit_not" | "res_not" | "img_not" | "fec_not" | "url_not", ExtArgs["result"]["noticias"]>
 
   export type $noticiasPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "noticias"
@@ -7157,9 +7248,9 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id_not: number
       tit_not: string
-      fec_not: Date
       res_not: string | null
       img_not: string | null
+      fec_not: Date
       url_not: string | null
     }, ExtArgs["result"]["noticias"]>
     composites: {}
@@ -7586,9 +7677,9 @@ export namespace Prisma {
   interface noticiasFieldRefs {
     readonly id_not: FieldRef<"noticias", 'Int'>
     readonly tit_not: FieldRef<"noticias", 'String'>
-    readonly fec_not: FieldRef<"noticias", 'DateTime'>
     readonly res_not: FieldRef<"noticias", 'String'>
     readonly img_not: FieldRef<"noticias", 'String'>
+    readonly fec_not: FieldRef<"noticias", 'DateTime'>
     readonly url_not: FieldRef<"noticias", 'String'>
   }
     
@@ -8029,9 +8120,9 @@ export namespace Prisma {
   export const NoticiasScalarFieldEnum: {
     id_not: 'id_not',
     tit_not: 'tit_not',
-    fec_not: 'fec_not',
     res_not: 'res_not',
     img_not: 'img_not',
+    fec_not: 'fec_not',
     url_not: 'url_not'
   };
 
@@ -8106,6 +8197,20 @@ export namespace Prisma {
    * Reference to a field of type 'Decimal[]'
    */
   export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -8425,18 +8530,18 @@ export namespace Prisma {
     NOT?: noticiasWhereInput | noticiasWhereInput[]
     id_not?: IntFilter<"noticias"> | number
     tit_not?: StringFilter<"noticias"> | string
-    fec_not?: DateTimeFilter<"noticias"> | Date | string
     res_not?: StringNullableFilter<"noticias"> | string | null
     img_not?: StringNullableFilter<"noticias"> | string | null
+    fec_not?: DateTimeFilter<"noticias"> | Date | string
     url_not?: StringNullableFilter<"noticias"> | string | null
   }
 
   export type noticiasOrderByWithRelationInput = {
     id_not?: SortOrder
     tit_not?: SortOrder
-    fec_not?: SortOrder
     res_not?: SortOrderInput | SortOrder
     img_not?: SortOrderInput | SortOrder
+    fec_not?: SortOrder
     url_not?: SortOrderInput | SortOrder
   }
 
@@ -8446,18 +8551,18 @@ export namespace Prisma {
     OR?: noticiasWhereInput[]
     NOT?: noticiasWhereInput | noticiasWhereInput[]
     tit_not?: StringFilter<"noticias"> | string
-    fec_not?: DateTimeFilter<"noticias"> | Date | string
     res_not?: StringNullableFilter<"noticias"> | string | null
     img_not?: StringNullableFilter<"noticias"> | string | null
+    fec_not?: DateTimeFilter<"noticias"> | Date | string
     url_not?: StringNullableFilter<"noticias"> | string | null
   }, "id_not">
 
   export type noticiasOrderByWithAggregationInput = {
     id_not?: SortOrder
     tit_not?: SortOrder
-    fec_not?: SortOrder
     res_not?: SortOrderInput | SortOrder
     img_not?: SortOrderInput | SortOrder
+    fec_not?: SortOrder
     url_not?: SortOrderInput | SortOrder
     _count?: noticiasCountOrderByAggregateInput
     _avg?: noticiasAvgOrderByAggregateInput
@@ -8472,9 +8577,9 @@ export namespace Prisma {
     NOT?: noticiasScalarWhereWithAggregatesInput | noticiasScalarWhereWithAggregatesInput[]
     id_not?: IntWithAggregatesFilter<"noticias"> | number
     tit_not?: StringWithAggregatesFilter<"noticias"> | string
-    fec_not?: DateTimeWithAggregatesFilter<"noticias"> | Date | string
     res_not?: StringNullableWithAggregatesFilter<"noticias"> | string | null
     img_not?: StringNullableWithAggregatesFilter<"noticias"> | string | null
+    fec_not?: DateTimeWithAggregatesFilter<"noticias"> | Date | string
     url_not?: StringNullableWithAggregatesFilter<"noticias"> | string | null
   }
 
@@ -8761,61 +8866,61 @@ export namespace Prisma {
 
   export type noticiasCreateInput = {
     tit_not: string
-    fec_not?: Date | string
     res_not?: string | null
     img_not?: string | null
+    fec_not?: Date | string
     url_not?: string | null
   }
 
   export type noticiasUncheckedCreateInput = {
     id_not?: number
     tit_not: string
-    fec_not?: Date | string
     res_not?: string | null
     img_not?: string | null
+    fec_not?: Date | string
     url_not?: string | null
   }
 
   export type noticiasUpdateInput = {
     tit_not?: StringFieldUpdateOperationsInput | string
-    fec_not?: DateTimeFieldUpdateOperationsInput | Date | string
     res_not?: NullableStringFieldUpdateOperationsInput | string | null
     img_not?: NullableStringFieldUpdateOperationsInput | string | null
+    fec_not?: DateTimeFieldUpdateOperationsInput | Date | string
     url_not?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type noticiasUncheckedUpdateInput = {
     id_not?: IntFieldUpdateOperationsInput | number
     tit_not?: StringFieldUpdateOperationsInput | string
-    fec_not?: DateTimeFieldUpdateOperationsInput | Date | string
     res_not?: NullableStringFieldUpdateOperationsInput | string | null
     img_not?: NullableStringFieldUpdateOperationsInput | string | null
+    fec_not?: DateTimeFieldUpdateOperationsInput | Date | string
     url_not?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type noticiasCreateManyInput = {
     id_not?: number
     tit_not: string
-    fec_not?: Date | string
     res_not?: string | null
     img_not?: string | null
+    fec_not?: Date | string
     url_not?: string | null
   }
 
   export type noticiasUpdateManyMutationInput = {
     tit_not?: StringFieldUpdateOperationsInput | string
-    fec_not?: DateTimeFieldUpdateOperationsInput | Date | string
     res_not?: NullableStringFieldUpdateOperationsInput | string | null
     img_not?: NullableStringFieldUpdateOperationsInput | string | null
+    fec_not?: DateTimeFieldUpdateOperationsInput | Date | string
     url_not?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type noticiasUncheckedUpdateManyInput = {
     id_not?: IntFieldUpdateOperationsInput | number
     tit_not?: StringFieldUpdateOperationsInput | string
-    fec_not?: DateTimeFieldUpdateOperationsInput | Date | string
     res_not?: NullableStringFieldUpdateOperationsInput | string | null
     img_not?: NullableStringFieldUpdateOperationsInput | string | null
+    fec_not?: DateTimeFieldUpdateOperationsInput | Date | string
     url_not?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -9195,9 +9300,9 @@ export namespace Prisma {
   export type noticiasCountOrderByAggregateInput = {
     id_not?: SortOrder
     tit_not?: SortOrder
-    fec_not?: SortOrder
     res_not?: SortOrder
     img_not?: SortOrder
+    fec_not?: SortOrder
     url_not?: SortOrder
   }
 
@@ -9208,18 +9313,18 @@ export namespace Prisma {
   export type noticiasMaxOrderByAggregateInput = {
     id_not?: SortOrder
     tit_not?: SortOrder
-    fec_not?: SortOrder
     res_not?: SortOrder
     img_not?: SortOrder
+    fec_not?: SortOrder
     url_not?: SortOrder
   }
 
   export type noticiasMinOrderByAggregateInput = {
     id_not?: SortOrder
     tit_not?: SortOrder
-    fec_not?: SortOrder
     res_not?: SortOrder
     img_not?: SortOrder
+    fec_not?: SortOrder
     url_not?: SortOrder
   }
 
@@ -9447,6 +9552,10 @@ export namespace Prisma {
     deleteMany?: hardwareScalarWhereInput | hardwareScalarWhereInput[]
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9610,6 +9719,31 @@ export namespace Prisma {
     _sum?: NestedDecimalNullableFilter<$PrismaModel>
     _min?: NestedDecimalNullableFilter<$PrismaModel>
     _max?: NestedDecimalNullableFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type juegosCreateWithoutCategoriasInput = {

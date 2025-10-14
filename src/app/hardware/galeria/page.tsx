@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import TopNav from '../../components/TopNav';
 import { galleryItems, type GalleryItem } from './data/gallery';
 import '../imp/impStyles.css';
 import './galleryStyles.css';
@@ -128,7 +127,6 @@ export default function GaleriaPage() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* NAV FIJA */}
-      <TopNav />
 
       {/* PORTADA */}
       <section className="relative w-full overflow-hidden">

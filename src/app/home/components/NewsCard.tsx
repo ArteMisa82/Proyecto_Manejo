@@ -1,4 +1,3 @@
-// src/app/home/components/NewsCard.tsx
 import React from "react";
 
 interface NewsCardProps {
@@ -15,13 +14,29 @@ export default function NewsCard({ title, imageUrl, date, summary, link }: NewsC
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="block rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+      className="block rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-gray-900"
     >
-      <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
+      <div className="flex justify-center items-center bg-gray-800">
+        <img
+          src={imageUrl}
+          alt={title}
+          className="
+            object-contain 
+            w-full 
+            max-w-full 
+            max-h-[250px] 
+            md:max-h-[300px] 
+            transition-transform 
+            duration-300 
+            hover:scale-105
+          "
+        />
+      </div>
+
       <div className="p-4 bg-gray-800 text-white">
-        <h3 className="text-lg font-bold">{title}</h3>
-        <p className="text-gray-300 text-sm">{date}</p>
-        <p className="text-gray-200">{summary}</p>
+        <h3 className="text-lg font-bold mb-1">{title}</h3>
+        <p className="text-gray-400 text-sm mb-2">{date}</p>
+        <p className="text-gray-200 text-sm leading-relaxed">{summary}</p>
       </div>
     </a>
   );

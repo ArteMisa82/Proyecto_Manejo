@@ -35,25 +35,26 @@ export default function HardwareCarousel() {
     <section className="my-10 px-5 relative">
       <h2 className="text-2xl font-bold mb-5">Hardware y Setup</h2>
 
-      <div className="relative overflow-hidden">
+      <div className="relative">
         <div
           ref={carouselRef}
-          className="flex gap-4 transition-transform duration-500"
-          style={{ overflow: "hidden" }}
+          className="flex gap-4 overflow-x-hidden snap-x snap-mandatory scroll-smooth"
         >
           {hardwareItems.map((item) => (
             <Link
               key={item.id_har}
-              href={`/hardware/imp`} // 👈 Ruta de destino
-              className="min-w-[300px] md:min-w-[400px] flex-shrink-0 bg-gray-800 rounded-lg overflow-hidden relative group cursor-pointer"
+              href={`/hardware/imp`}
+              className="min-w-[300px] md:min-w-[400px] flex-shrink-0 bg-gray-800 rounded-lg overflow-hidden relative group cursor-pointer snap-center"
             >
-              <Image
-                src={item.img_har || "/default.png"}
-                alt={item.nom_har}
-                width={400}
-                height={250}
-                className="object-cover w-full h-[250px] transition-transform duration-300 group-hover:scale-105"
-              />
+              <div className="relative w-full h-[250px] md:h-[300px]">
+                <Image
+                  src={item.img_har || "/default.png"}
+                  alt={item.nom_har}
+                  fill
+                  className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                />
+              </div>
+
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                 <p className="text-white font-semibold text-lg">{item.nom_har}</p>
               </div>
