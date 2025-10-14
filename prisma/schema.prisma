@@ -29,6 +29,7 @@ model hardware {
   des_har   String? @db.VarChar(255)
   img_har   String? @db.VarChar(255)
   url_har   String? @db.VarChar(255)
+  web_url_har String? @map("web_url_har")
   specs_har String? @db.VarChar(255)
   id_mar    Int?
   marcas    marcas? @relation(fields: [id_mar], references: [id_mar], onDelete: NoAction, onUpdate: NoAction)
