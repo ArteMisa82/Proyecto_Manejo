@@ -9,7 +9,7 @@ export default function TopNav() {
     pathname === href ? 'text-white' : 'text-white/70 hover:text-white';
 
   return (
-    <nav className="fixed top-0 right-0 left-0 z-50 bg-[#0b0f19]/80 backdrop-blur border-b border-white/10">
+    <nav className="w-full bg-[#0b0f19]/80 backdrop-blur border-b border-white/10">
       <div className="mx-auto max-w-7xl px-4 h-14 flex items-center justify-end gap-6">
         <Link href="/" className={isActive('/')}>Inicio</Link>
         <Link href="/hardware/imp" className={isActive('/hardware/imp')}>Hardware</Link>
@@ -18,3 +18,4 @@ export default function TopNav() {
     </nav>
   );
 }
+  

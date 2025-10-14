@@ -3,8 +3,8 @@ import HomeLayout from '../home/layout';
 import TopNav from '@/components/TopNav';
 
 export const metadata: Metadata = {
-  title: 'Hardware | Plataforma UTA',
-  description: 'Sección de hardware y consolas',
+  title: 'Juegos | Plataforma UTA',
+  description: 'Sección de juegos',
 };
 
 export default function ImpLayout({ children }: { children: React.ReactNode }) {
@@ -13,7 +13,6 @@ export default function ImpLayout({ children }: { children: React.ReactNode }) {
       {/* Layout específico de Hardware */}
       <div className="bg-black text-white min-h-screen">
         {/*<NavBar/>*/}
-        <TopNav/>
         <main>{children}</main>
       </div>
     </HomeLayout>

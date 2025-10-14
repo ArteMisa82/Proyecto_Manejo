@@ -1,6 +1,8 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function SplashScreen() {
@@ -26,15 +28,22 @@ export default function SplashScreen() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            {/* Nombre animado */}
-            <motion.h1
-              className="text-6xl font-bold mb-6"
+            {/* Imagen animada (logo) */}
+            <motion.div
               initial={{ y: -50, scale: 0.8, opacity: 0 }}
               animate={{ y: 0, scale: 1, opacity: 1 }}
               transition={{ type: "spring", stiffness: 100, damping: 10 }}
+              className="mb-6"
             >
-              🎮 MiAppDeJuegos
-            </motion.h1>
+              <Image
+                src="/home/LogoLoading.png" // ruta relativa desde /public
+                alt="Logo de la app"
+                width={480}
+                height={480}
+                priority
+                className="rounded-xl"
+              />
+            </motion.div>
 
             {/* Barra de carga animada */}
             <motion.div
