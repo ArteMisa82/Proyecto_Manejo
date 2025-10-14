@@ -54,3 +54,12 @@ model marcas {
   des_mar  String?    @db.VarChar(255)
   hardware hardware[]
 }
+
+model noticias {
+  id_not  Int      @id @default(autoincrement())
+  tit_not String   @db.VarChar(255)
+  res_not String?  @db.VarChar(255)
+  img_not String?  @db.VarChar(255)
+  fec_not DateTime @default(now())
+  url_not String?  @db.VarChar(255)
+}
