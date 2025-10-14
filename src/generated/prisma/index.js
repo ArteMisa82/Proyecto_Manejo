@@ -178,7 +178,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\User\\Documents\\Joshua Universidad\\Cuarto\\MAnejo\\segunda Matricula\\ProyectoPrimerParcial\\PRoyectoPrimerParcial\\Proyecto_Manejo\\src\\generated\\prisma",
+      "value": "C:\\Users\\user\\Documents\\GitHub\\Proyecto_Manejo\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -192,7 +192,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\User\\Documents\\Joshua Universidad\\Cuarto\\MAnejo\\segunda Matricula\\ProyectoPrimerParcial\\PRoyectoPrimerParcial\\Proyecto_Manejo\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\user\\Documents\\GitHub\\Proyecto_Manejo\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
