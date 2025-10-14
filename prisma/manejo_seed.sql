@@ -296,6 +296,11 @@ COPY public.categorias (id_cat, nom_cat) FROM stdin;
 2	Aventura
 3	RPG
 4	Deportes
+5	Exploración
+6	Carreras
+7	Ritmo
+8	Música
+9	Superhéroes
 \.
 
 
@@ -308,6 +313,8 @@ COPY public.franquicias (id_fra, nom_fra, des_fra) FROM stdin;
 2	Mario	Franquicia clásica de Nintendo.
 3	Final Fantasy	Juegos de rol épicos.
 4	FIFA	Juegos de fútbol.
+5	SEGA	Franquicia de videojuegos SEGA.
+6	PlayStation	Juegos exclusivos de consolas PlayStation.
 \.
 
 
@@ -330,11 +337,17 @@ COPY public.hardware (id_har, cod_har, nom_har, tipo_har, des_har, img_har, url_
 --
 
 COPY public.juegos (id_jue, nom_jue, des_jue, pre_ori_jue, pre_ofe_jue, porc_desc_jue, img_jue, id_fra, id_cat) FROM stdin;
-1	Assassin's Creed Valhalla	Explora el mundo vikingo	59.99	39.99	33.00	/juegos/ac_valhalla.png	1	1
-2	Mario Odyssey	Aventura por mundos increíbles	49.99	44.99	10.00	/juegos/mario_odyssey.png	2	2
-3	Final Fantasy XVI	RPG épico de fantasía	69.99	59.99	15.00	/juegos/ff16.png	3	3
-4	FIFA 24	Juega al fútbol con tus equipos favoritos	69.99	49.99	29.00	/juegos/fifa24.png	4	4
+1	Assassin's Creed Valhalla	Explora el mundo vikingo	59.99	39.99	33.00	/imgs/ac_valhalla.png	1	1
+2	Mario Odyssey	Aventura por mundos increíbles	49.99	44.99	10.00	/imgs/mario_odyssey.png	2	2
+3	Final Fantasy XVI	RPG épico de fantasía	69.99	59.99	15.00	/imgs/ff16.webp	3	3
+4	FIFA 24	Juega al fútbol con tus equipos favoritos	69.99	49.99	29.00	/imgs/fifa24.jpg	4	4
+5	God of War: Ragnarok	Únete a Kratos y Atreus para explorar los míticos nueve reinos	69.99	39.99	50	/imgs/gow.jpg	6	1
+6	Sonic Frontiers	Conviértete en Sonic y desvela los misterios de una antigua civilización	59.99	34.99	50	/imgs/sonf.avif	5	1
+7	The Legend of Zelda: Tears of The Kingdom	En la secuela de Zelda recorrerás Hyrule y las islas flotantes	79.99	49.99	40	/imgs/totk.jpg	2	2
+8	Hollow Knight: Silksong	Hollow Knight es un juego de acción y plataformas en 2D	6.99	3.99	40	/imgs/hollow.png	5	1
+9	Sonic Unleashed: PC Port	SONIC UNLEASHED llegó a PC como aplicación normal	29.99	0	100	/imgs/unleashed.jpg	5	1
 \.
+
 
 
 --
@@ -345,7 +358,7 @@ COPY public.marcas (id_mar, nom_mar, des_mar) FROM stdin;
 1	Nintendo	Fabricante japonés de consolas y videojuegos.
 2	Sony	Fabricante de consolas y hardware.
 3	Microsoft	Fabricante de consolas y hardware.
-4	Nintendo	Fabricante de consolas y videojuegos.
+4	SEGA	Fabricante japonés de videojuegos y consolas.
 \.
 
 
