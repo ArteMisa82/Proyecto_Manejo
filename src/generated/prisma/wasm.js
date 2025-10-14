@@ -133,6 +133,15 @@ exports.Prisma.MarcasScalarFieldEnum = {
   des_mar: 'des_mar'
 };
 
+exports.Prisma.NoticiasScalarFieldEnum = {
+  id_not: 'id_not',
+  tit_not: 'tit_not',
+  res_not: 'res_not',
+  img_not: 'img_not',
+  fec_not: 'fec_not',
+  url_not: 'url_not'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -154,7 +163,8 @@ exports.Prisma.ModelName = {
   franquicias: 'franquicias',
   hardware: 'hardware',
   juegos: 'juegos',
-  marcas: 'marcas'
+  marcas: 'marcas',
+  noticias: 'noticias'
 };
 /**
  * Create the Client
@@ -167,7 +177,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\anave\\Desktop\\ProyectoManejo\\juegos-app\\src\\generated\\prisma",
+      "value": "C:\\Users\\user\\Documents\\GitHub\\Proyecto_Manejo\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -181,12 +191,12 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\anave\\Desktop\\ProyectoManejo\\juegos-app\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\user\\Documents\\GitHub\\Proyecto_Manejo\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
     "rootEnvPath": null,
-    "schemaEnvPath": "../../../prisma/.env"
+    "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.17.1",
@@ -204,13 +214,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = \"postgresql://postgres:postgres@localhost:5432/Manejo?schema=public\"\n}\n\nmodel categorias {\n  id_cat  Int      @id @default(autoincrement())\n  nom_cat String   @db.VarChar(50)\n  juegos  juegos[]\n}\n\nmodel franquicias {\n  id_fra  Int      @id @default(autoincrement())\n  nom_fra String   @db.VarChar(50)\n  des_fra String?  @db.VarChar(255)\n  juegos  juegos[]\n}\n\nmodel hardware {\n  id_har    Int     @id @default(autoincrement())\n  cod_har   String  @unique @db.VarChar(50)\n  nom_har   String  @db.VarChar(100)\n  tipo_har  String? @db.VarChar(50)\n  des_har   String? @db.VarChar(255)\n  img_har   String? @db.VarChar(255)\n  url_har   String? @db.VarChar(255)\n  specs_har String? @db.VarChar(255)\n  id_mar    Int?\n  marcas    marcas? @relation(fields: [id_mar], references: [id_mar], onDelete: NoAction, onUpdate: NoAction)\n}\n\nmodel juegos {\n  id_jue        Int          @id @default(autoincrement())\n  nom_jue       String       @db.VarChar(100)\n  des_jue       String       @db.VarChar(255)\n  pre_ori_jue   Decimal?     @db.Decimal(10, 2)\n  pre_ofe_jue   Decimal?     @db.Decimal(10, 2)\n  porc_desc_jue Decimal?     @db.Decimal(5, 2)\n  img_jue       String?      @db.VarChar(255)\n  id_fra        Int?\n  id_cat        Int?\n  categorias    categorias?  @relation(fields: [id_cat], references: [id_cat], onDelete: NoAction, onUpdate: NoAction)\n  franquicias   franquicias? @relation(fields: [id_fra], references: [id_fra], onDelete: NoAction, onUpdate: NoAction)\n}\n\nmodel marcas {\n  id_mar   Int        @id @default(autoincrement())\n  nom_mar  String     @db.VarChar(50)\n  des_mar  String?    @db.VarChar(255)\n  hardware hardware[]\n}\n",
-  "inlineSchemaHash": "d156ef4bd5b3c019673e9be43d114a341c8bf3499884c02ee5541bfc33342466",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = \"postgresql://postgres:postgres@localhost:5432/Manejo?schema=public\"\n}\n\nmodel categorias {\n  id_cat  Int      @id @default(autoincrement())\n  nom_cat String   @db.VarChar(50)\n  juegos  juegos[]\n}\n\nmodel franquicias {\n  id_fra  Int      @id @default(autoincrement())\n  nom_fra String   @db.VarChar(50)\n  des_fra String?  @db.VarChar(255)\n  juegos  juegos[]\n}\n\nmodel hardware {\n  id_har    Int     @id @default(autoincrement())\n  cod_har   String  @unique @db.VarChar(50)\n  nom_har   String  @db.VarChar(100)\n  tipo_har  String? @db.VarChar(50)\n  des_har   String? @db.VarChar(255)\n  img_har   String? @db.VarChar(255)\n  url_har   String? @db.VarChar(255)\n  specs_har String? @db.VarChar(255)\n  id_mar    Int?\n  marcas    marcas? @relation(fields: [id_mar], references: [id_mar], onDelete: NoAction, onUpdate: NoAction)\n}\n\nmodel juegos {\n  id_jue        Int          @id @default(autoincrement())\n  nom_jue       String       @db.VarChar(100)\n  des_jue       String       @db.VarChar(255)\n  pre_ori_jue   Decimal?     @db.Decimal(10, 2)\n  pre_ofe_jue   Decimal?     @db.Decimal(10, 2)\n  porc_desc_jue Decimal?     @db.Decimal(5, 2)\n  img_jue       String?      @db.VarChar(255)\n  id_fra        Int?\n  id_cat        Int?\n  categorias    categorias?  @relation(fields: [id_cat], references: [id_cat], onDelete: NoAction, onUpdate: NoAction)\n  franquicias   franquicias? @relation(fields: [id_fra], references: [id_fra], onDelete: NoAction, onUpdate: NoAction)\n}\n\nmodel marcas {\n  id_mar   Int        @id @default(autoincrement())\n  nom_mar  String     @db.VarChar(50)\n  des_mar  String?    @db.VarChar(255)\n  hardware hardware[]\n}\n\nmodel noticias {\n  id_not  Int      @id @default(autoincrement())\n  tit_not String   @db.VarChar(255)\n  res_not String?  @db.VarChar(255)\n  img_not String?  @db.VarChar(255)\n  fec_not DateTime @default(now())\n  url_not String?  @db.VarChar(255)\n}\n",
+  "inlineSchemaHash": "df64a1cbfc45c594a83b9261d73260cabd0a06d637f07b8a278e690a56840070",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"categorias\":{\"fields\":[{\"name\":\"id_cat\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nom_cat\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"juegos\",\"kind\":\"object\",\"type\":\"juegos\",\"relationName\":\"categoriasTojuegos\"}],\"dbName\":null},\"franquicias\":{\"fields\":[{\"name\":\"id_fra\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nom_fra\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"des_fra\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"juegos\",\"kind\":\"object\",\"type\":\"juegos\",\"relationName\":\"franquiciasTojuegos\"}],\"dbName\":null},\"hardware\":{\"fields\":[{\"name\":\"id_har\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"cod_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nom_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tipo_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"des_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"img_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"url_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"specs_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id_mar\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"marcas\",\"kind\":\"object\",\"type\":\"marcas\",\"relationName\":\"hardwareTomarcas\"}],\"dbName\":null},\"juegos\":{\"fields\":[{\"name\":\"id_jue\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nom_jue\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"des_jue\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pre_ori_jue\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"pre_ofe_jue\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"porc_desc_jue\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"img_jue\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id_fra\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"id_cat\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"categorias\",\"kind\":\"object\",\"type\":\"categorias\",\"relationName\":\"categoriasTojuegos\"},{\"name\":\"franquicias\",\"kind\":\"object\",\"type\":\"franquicias\",\"relationName\":\"franquiciasTojuegos\"}],\"dbName\":null},\"marcas\":{\"fields\":[{\"name\":\"id_mar\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nom_mar\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"des_mar\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"hardware\",\"kind\":\"object\",\"type\":\"hardware\",\"relationName\":\"hardwareTomarcas\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"categorias\":{\"fields\":[{\"name\":\"id_cat\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nom_cat\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"juegos\",\"kind\":\"object\",\"type\":\"juegos\",\"relationName\":\"categoriasTojuegos\"}],\"dbName\":null},\"franquicias\":{\"fields\":[{\"name\":\"id_fra\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nom_fra\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"des_fra\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"juegos\",\"kind\":\"object\",\"type\":\"juegos\",\"relationName\":\"franquiciasTojuegos\"}],\"dbName\":null},\"hardware\":{\"fields\":[{\"name\":\"id_har\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"cod_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"nom_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tipo_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"des_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"img_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"url_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"specs_har\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id_mar\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"marcas\",\"kind\":\"object\",\"type\":\"marcas\",\"relationName\":\"hardwareTomarcas\"}],\"dbName\":null},\"juegos\":{\"fields\":[{\"name\":\"id_jue\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nom_jue\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"des_jue\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"pre_ori_jue\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"pre_ofe_jue\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"porc_desc_jue\",\"kind\":\"scalar\",\"type\":\"Decimal\"},{\"name\":\"img_jue\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"id_fra\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"id_cat\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"categorias\",\"kind\":\"object\",\"type\":\"categorias\",\"relationName\":\"categoriasTojuegos\"},{\"name\":\"franquicias\",\"kind\":\"object\",\"type\":\"franquicias\",\"relationName\":\"franquiciasTojuegos\"}],\"dbName\":null},\"marcas\":{\"fields\":[{\"name\":\"id_mar\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"nom_mar\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"des_mar\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"hardware\",\"kind\":\"object\",\"type\":\"hardware\",\"relationName\":\"hardwareTomarcas\"}],\"dbName\":null},\"noticias\":{\"fields\":[{\"name\":\"id_not\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"tit_not\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"res_not\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"img_not\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"fec_not\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"url_not\",\"kind\":\"scalar\",\"type\":\"String\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = {
   getRuntime: async () => require('./query_engine_bg.js'),
