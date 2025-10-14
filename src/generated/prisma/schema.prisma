@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:postgres@localhost:5432/Manejo?schema=public"
+}
+
+model categorias {
+  id_cat  Int      @id @default(autoincrement())
+  nom_cat String   @db.VarChar(50)
+  juegos  juegos[]
+}
+
+model franquicias {
+  id_fra  Int      @id @default(autoincrement())
+  nom_fra String   @db.VarChar(50)
+  des_fra String?  @db.VarChar(255)
+  juegos  juegos[]
+}
+
+model hardware {
+  id_har      Int     @id @default(autoincrement())
+  cod_har     String  @unique @db.VarChar(50)
+  nom_har     String  @db.VarChar(100)
+  tipo_har    String? @db.VarChar(50)
+  des_har     String? @db.VarChar(255)
+  img_har     String? @db.VarChar(255)
+  url_har     String? @db.VarChar(255)
+  web_url_har String? @map("web_url_har")
+  specs_har   String? @db.VarChar(255)
+  id_mar      Int?
+  marcas      marcas? @relation(fields: [id_mar], references: [id_mar], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model juegos {
+  id_jue        Int          @id @default(autoincrement())
+  nom_jue       String       @db.VarChar(100)
+  des_jue       String       @db.VarChar(255)
+  pre_ori_jue   Decimal?     @db.Decimal(10, 2)
+  pre_ofe_jue   Decimal?     @db.Decimal(10, 2)
+  porc_desc_jue Decimal?     @db.Decimal(5, 2)
+  img_jue       String?      @db.VarChar(255)
+  id_fra        Int?
+  id_cat        Int?
+  categorias    categorias?  @relation(fields: [id_cat], references: [id_cat], onDelete: NoAction, onUpdate: NoAction)
+  franquicias   franquicias? @relation(fields: [id_fra], references: [id_fra], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model marcas {
+  id_mar   Int        @id @default(autoincrement())
+  nom_mar  String     @db.VarChar(50)
+  des_mar  String?    @db.VarChar(255)
+  hardware hardware[]
+}
+
+model noticias {
+  id_not  Int      @id @default(autoincrement())
+  tit_not String   @db.VarChar(255)
+  res_not String?  @db.VarChar(255)
+  img_not String?  @db.VarChar(255)
+  fec_not DateTime @default(now())
+  url_not String?  @db.VarChar(255)
+}

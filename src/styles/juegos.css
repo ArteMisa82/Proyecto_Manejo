@@ -1,0 +1,416 @@
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;line-height:1.6;font-size:16px}
+
+/* Page wrapper */
+.pagina-juegos{min-height:100vh;display:flex;flex-direction:column}
+.contenedor{max-width:1200px;margin:0 auto;padding:0 1rem;width:100%}
+
+/* Header */
+.header-juegos{padding:1rem 0;border-bottom:2px solid #0c4cff}
+.contenedor-header{max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:flex-start;gap:1rem}
+.titulo-principal{font-size:2.6rem;font-weight:800;text-align:left;width:100vw;position:relative;left:50%;margin-left:-50vw;padding-left:1rem}
+.navegacion{display:flex;gap:.8rem;margin-left:auto}
+.nav-link{color:#cfcfcf;text-decoration:none;padding:.4rem .8rem;border-radius:6px}
+.nav-link.activo{background:rgba(12,76,255,.12);color:#fff}
+
+/* Sección ofertas */
+.ofertas-carrusel{padding:2rem 0}
+.cabecera-ofertas{max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;gap:1rem;justify-content:flex-start;width:100%}
+.cabecera-ofertas h2{font-size:2.2rem;margin:0;text-align:left;display:inline-block;width:auto;padding-left:0}
+.cabecera-ofertas .titulo-destacado{background:linear-gradient(90deg,#0c4cff,#1e90ff);color:#fff;padding:.8rem 1.4rem;border-radius:10px;font-weight:800;text-align:left;display:inline-flex;min-width:220px;justify-content:center}
+
+/* Franquicias header */
+.fran-header{display:flex;align-items:center;gap:1rem;margin-bottom:.6rem}
+.fran-header h2{font-size:1.8rem;margin:0}
+.subtitulo{font-size:1.1rem;color:#e1eefb;margin:0 0 1rem}
+
+/* Separación entre secciones de franquicia */
+.franquicias-seccion{margin:3rem 0}
+
+/* Franquia hero carousel */
+.fran-hero{position:relative;display:flex;align-items:center;gap:1rem;margin-top:1rem}
+.hero-nav{background:rgba(0,0,0,0.5);color:#fff;border:0;width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:20}
+.hero-slide{flex:1;position:relative;overflow:hidden;border-radius:12px}
+.hero-media{position:relative;width:100%;height:360px}
+.hero-media::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.36);z-index:5}
+.hero-slide .hero-media{transition:opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); will-change: opacity, transform}
+
+/* smoother fade-in keyframes */
+@keyframes fadeInHero{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.hero-media{animation:fadeInHero .9s cubic-bezier(.2,.8,.2,1) both}
+.hero-media img{will-change:opacity, transform;transition:opacity .9s cubic-bezier(.2,.8,.2,1)}
+.hero-overlay{position:absolute;left:3%;right:3%;top:0;bottom:0;color:#fff;z-index:10;display:flex;flex-direction:column;justify-content:space-between;padding:1.2rem}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.badge-hero{display:inline-block;background:linear-gradient(90deg,#0c4cff,#1e90ff);padding:.45rem .8rem;border-radius:20px;font-weight:800;margin-bottom:.6rem}
+.hero-title{font-size:2.4rem;margin:0 0 .6rem}
+.hero-desc{font-size:1rem;color:#d6e9ff;max-width:70%;margin:0 0 .6rem;text-align:left}
+.hero-actions{display:flex;gap:0.8rem;align-items:center}
+.boton-play{background:#0c4cff;color:#fff;border:0;padding:.6rem 1rem;border-radius:50%;font-size:1.1rem;cursor:pointer}
+
+/* Category area pinned almost to bottom */
+.hero-bottom{display:flex;justify-content:flex-start;align-items:flex-end;padding-bottom:6px}
+.hero-categories{display:flex;gap:0.6rem;z-index:12}
+.cat-btn{background:#fff;color:#0b1f3a;padding:.35rem .7rem;border-radius:999px;border:0;font-size:.9rem;cursor:pointer;opacity:0.95}
+.cat-btn:hover{opacity:1}
+
+/* Edición inline de categorías */
+.cat-edit-toggle{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:.4rem .6rem;border-radius:8px;cursor:pointer}
+.cat-edit-panel{background:rgba(0,0,0,0.45);padding:.6rem;border-radius:8px;display:flex;flex-direction:column;gap:.6rem;max-width:520px}
+.cat-edit-list{display:flex;flex-direction:column;gap:.4rem}
+.cat-edit-row{display:flex;gap:.4rem;align-items:center}
+.cat-edit-row input{flex:1;padding:.45rem .6rem;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:#fff}
+.cat-remove{background:#ff4d4f;border:0;color:#fff;padding:.35rem .5rem;border-radius:6px;cursor:pointer}
+.cat-edit-actions{display:flex;gap:.5rem;justify-content:flex-end}
+.cat-add{background:transparent;border:1px dashed rgba(255,255,255,0.14);color:#fff;padding:.35rem .6rem;border-radius:6px;cursor:pointer}
+.cat-save{background:linear-gradient(90deg,#0c4cff,#1e90ff);border:0;color:#fff;padding:.45rem .8rem;border-radius:6px;cursor:pointer}
+.cat-cancel{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:.35rem .6rem;border-radius:6px;cursor:pointer}
+.hero-nav.hero-prev{position:absolute;left:8px}
+.hero-nav.hero-next{position:absolute;right:8px}
+
+/* Carrusel - centrado y contenido organizado */
+.contenedor-carrusel{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%;padding:0 1rem}
+.boton-navegacion{flex:0 0 56px;height:56px;border-radius:50%;background:rgba(255,255,255,.04);color:#fff;border:0;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.carrusel{flex:1;width:100%;max-width:none;background:linear-gradient(#000,#0a0a0a);padding:1.5rem;border-radius:8px;display:flex;align-items:center}
+.lista-juegos{display:flex;align-items:center;justify-content:center;width:100%}
+.tarjeta-juego{width:100%;max-width:none;display:flex;justify-content:center;position:relative}
+
+/* Contenido interno de la tarjeta: imagen + info */
+.contenido-juego{display:flex;gap:1.2rem;align-items:flex-start;width:100%}
+.imagen-juego{flex:0 0 48%;min-width:240px;height:420px;border-radius:12px;background:linear-gradient(90deg,#0c4cff,#1e90ff);display:flex;align-items:center;justify-content:center;color:#fff;position:relative;overflow:hidden}
+.imagen-juego img{width:100%;height:100%;object-fit:cover;display:block}
+.imagen-juego::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.22);z-index:2;border-radius:12px}
+.info-juego{flex:1}
+
+.etiqueta-oferta,.badge-destacado{position:absolute;top:12px;padding:6px 10px;border-radius:14px;color:#fff;background:linear-gradient(90deg,#0c4cff,#1e90ff);font-weight:700;z-index:10}
+.etiqueta-oferta{right:12px}.badge-destacado{left:12px}
+
+.titulo-juego{font-size:1.9rem;margin:0 0 .6rem}
+.descripcion-juego{color:#cfe6ff;margin-bottom:1rem}
+.precios{display:flex;gap:1rem;align-items:center;margin-bottom:1rem}
+.precio-original{color:#9a9a9a;text-decoration:line-through}
+.precio-oferta{color:#1e90ff;font-weight:800;font-size:1.4rem}
+.acciones{display:flex;gap:.8rem;flex-wrap:wrap}
+.boton-comprar{background:linear-gradient(90deg,#0c4cff,#1e90ff);color:#fff;padding:.7rem 1rem;border-radius:8px;border:0;cursor:pointer}
+.boton-info{background:transparent;color:#0c4cff;border:2px solid #0c4cff;padding:.55rem .85rem;border-radius:8px}
+
+.indicadores{display:flex;gap:.6rem;justify-content:center;margin:1rem 0}
+.indicador{width:12px;height:12px;border-radius:50%;background:#111;cursor:pointer}
+.indicador.activo{background:linear-gradient(90deg,#0c4cff,#1e90ff);box-shadow:0 0 8px rgba(12,76,255,.22)}
+.contador-juegos{text-align:center;color:#cfe6ff;margin-top:.5rem}
+
+/* Todos los juegos */
+.todos-juegos{padding:2rem 0}
+.cabecera-todos{max-width:1200px;margin:0 auto;padding:0 1rem;margin-bottom:1rem}
+.grid-juegos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.card-juego{background:linear-gradient(#000,#0a0a0a);padding:1rem;border-radius:10px;position:relative;cursor:pointer}
+.card-imagen{height:120px;border-radius:8px;background:linear-gradient(90deg,#0c4cff,#1e90ff);display:flex;align-items:center;justify-content:center;color:#fff}
+.card-oferta{position:absolute;top:10px;right:10px;background:#0c4cff;color:#fff;padding:4px 8px;border-radius:12px;font-weight:700}
+
+/* Footer */
+.footer-juegos{padding:2rem 0;border-top:1px solid #111;margin-top:auto}
+.contenedor-footer{max-width:1200px;margin:0 auto;padding:0 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+
+/* Responsive adjustments */
+@media(max-width:900px){.contenido-juego{flex-direction:column}.imagen-juego{width:100%;height:220px}.tarjeta-juego{max-width:520px}}
+@media(max-width:480px){.titulo-principal{font-size:1.2rem}.contenedor{padding:0 .8rem}.grid-juegos{grid-template-columns:1fr}.acciones{width:100%;justify-content:space-between}}
+@media(max-width:720px){.franquicias-seccion{margin:2rem 0}}
+
+/* Barras Divisoras de Franquicias - Estilo Ancho */
+.barra-franquicia {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  margin: 4rem 0 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.barra-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.barra-logo img {
+  height: 90px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Colores de fondo para cada franquicia */
+.barra-sega {
+  background: linear-gradient(135deg, #0033a0 100%);
+}
+
+.barra-nintendo {
+  background: #e60012;
+}
+
+.barra-playstation {
+  background: #ffffff;
+}
+
+/* Efectos visuales para las barras */
+.barra-franquicia::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0.1) 0%,
+    transparent 50%,
+    rgba(0,0,0,0.1) 100%
+  );
+  z-index: 1;
+}
+
+/* Efectos hover */
+.barra-franquicia:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.barra-franquicia:hover .barra-logo img {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .barra-franquicia {
+    height: 70px;
+    padding: 0 1rem;
+    margin: 3rem 0 1.5rem 0;
+  }
+  
+  .barra-logo {
+    padding: 0 1rem;
+  }
+  
+  .barra-logo img {
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .barra-franquicia {
+    height: 80px;
+  }
+  
+  .barra-logo img {
+    height: 40px;
+  }
+}
+/* ELIMINAR MARGEN SUPERIOR de las secciones que vienen después de barras */
+.barra-franquicia + .franquicias-seccion {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Asegurar que el trailer no tenga márgenes */
+.trailer-wrapper {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Eliminar cualquier padding del contenedor de franquicia */
+.barra-franquicia + .franquicias-seccion .contenedor-franquicia {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* También eliminar el margen inferior de la barra para que quede pegado */
+.barra-franquicia {
+  margin-bottom: 0 !important;
+}
+
+/* ===== ANIMACIONES DE DESLIZAMIENTO PARA CARRUSELES ===== */
+
+/* Deslizamiento horizontal para cambio de slides */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
+
+/* Aplicar animación al cambiar slides */
+.lista-juegos {
+  transition: transform 0.6s ease;
+}
+
+/* Clases para animación de transición */
+.slide-next {
+  animation: slideInRight 0.6s ease both;
+}
+
+.slide-prev {
+  animation: slideInLeft 0.6s ease both;
+}
+
+/* Animación para hero slides */
+.hero-slide.slide-next {
+  animation: slideInRight 0.8s ease both;
+}
+
+.hero-slide.slide-prev {
+  animation: slideInLeft 0.8s ease both;
+}
+
+/* Efecto de deslizamiento suave en hover para tarjetas */
+.tarjeta-juego {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-juego:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(12, 76, 255, 0.2);
+}
+
+/* Deslizamiento suave para botones de navegación */
+.boton-navegacion, .hero-nav {
+  transition: all 0.3s ease;
+}
+
+.boton-navegacion:hover, .hero-nav:hover {
+  transform: translateX(0) scale(1.1);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.boton-anterior:hover {
+  transform: translateX(-3px) scale(1.1);
+}
+
+.boton-siguiente:hover {
+  transform: translateX(3px) scale(1.1);
+}
+
+/* Deslizamiento para indicadores */
+.indicador {
+  transition: all 0.3s ease;
+}
+
+.indicador:hover {
+  transform: translateY(-2px) scale(1.2);
+}
+
+.indicador.activo {
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Deslizamiento para precios */
+.precio-oferta {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.precio-oferta:hover {
+  transform: translateY(-2px);
+}
+
+/* Deslizamiento para botones de acción */
+.boton-comprar, .boton-info {
+  transition: all 0.3s ease;
+}
+
+.boton-comprar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(12, 76, 255, 0.3);
+}
+
+.boton-info:hover {
+  transform: translateY(-2px);
+  background: #0c4cff;
+  color: white;
+}
+
+/* Deslizamiento de entrada para secciones */
+.franquicias-seccion {
+  animation: slideInUp 0.8s ease both;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Deslizamiento para barras de franquicia */
+.barra-franquicia {
+  animation: slideInLeft 0.6s ease both;
+}
+
+/* Efecto de deslizamiento al hacer scroll */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
