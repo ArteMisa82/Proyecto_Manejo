@@ -2,7 +2,7 @@
 'use client';
 
 import Image from 'next/image';
-import TopNav from '../../components/TopNav';
+//import TopNav from '../../components/TopNav';
 
 import '../imp/impStyles.css';
 import './galleryStyles.css';
