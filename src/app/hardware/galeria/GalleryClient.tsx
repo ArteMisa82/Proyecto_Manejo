@@ -153,7 +153,6 @@ export default function GaleriaPage({ serverItems }: { serverItems: HardwareItem
     return (
         <div className="min-h-screen bg-black text-white">
             {/* NAV FIJA */}
-            <TopNav />
             {/* PORTADA, etc... */}
 
             {/* CONTENIDO: carruseles + videos en columna */}
