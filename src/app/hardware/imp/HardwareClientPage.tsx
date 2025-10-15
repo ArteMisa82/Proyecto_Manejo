@@ -2,7 +2,7 @@
 'use client';
 
 import Image from 'next/image';
-import TopNav from '../../components/TopNav'; 
+
 import '../imp/impStyles.css';
 
 // 1. 💡 IMPORTAMOS EL TIPO DE DATO DEFINIDO EN EL SERVER COMPONENT
@@ -123,7 +123,7 @@ export default function HardwareClientPage({ serverItems }: { serverItems: Hardw
     
     return (
         <div className="min-h-screen bg-black text-white">
-            <TopNav />
+            
             
             {/* EQUIPOS RECIENTES (Dinámico) */}
             <section id="recientes" className="mx-auto max-w-7xl px-4 py-10">

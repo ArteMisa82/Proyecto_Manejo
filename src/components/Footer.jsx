@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="bg-[#171a21] text-gray-400 text-sm mt-16 border-t border-gray-700">
@@ -5,15 +7,18 @@ export default function Footer() {
         {/* Logo y derechos */}
         <div className="flex flex-col md:flex-row items-center justify-between mb-4">
           <div className="flex items-center space-x-3">
-            <img
-              src="/home/logo.png"
-              alt="JuegosApp Logo"
-              className="h-8 w-auto opacity-90"
-            />
-            <p className="text-gray-300 font-semibold">JuegosApp</p>
+            <Image
+                        src="/home/LogoSimple.png" // ruta relativa desde /public
+                        alt="Logo de la app"
+                        width={30}
+                        height={30}
+                        priority
+                        className="rounded-xl"
+                      />
+            <p className="text-gray-300 font-semibold">GamerHub</p>
           </div>
           <p className="text-gray-500 text-xs text-center md:text-right mt-2 md:mt-0">
-            © 2025 JuegosApp. Todos los derechos reservados.  
+            © 2025 GamerHub. Todos los derechos reservados.  
             Todos los precios incluyen IVA (donde sea aplicable).
           </p>
         </div>
